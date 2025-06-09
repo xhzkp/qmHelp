@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<script type="text/javascript" src="../h.js"></script>
+<title>Services</title>
+<link rel=StyleSheet href="../QM-Help.css">
+<style type="text/css">
+li {
+	margin-top: 3pt;
+	margin-bottom: 3pt;
+}
+</style>
+</head>
+
+<body>
+<h1>AR Services Manager Library 1.03</h1>
+
+<p class="red">Obsolete. Does not work on Windows 10/11.</p>
+<p>&nbsp;</p>
+<p>This library manages Windows services. It is a COM component.</p>
+<p>&nbsp;</p>
+<p>If used in exe, copy ARServicesMgr.DLL from QM folder to your exe folder on other computers. Don't need to register COM component.</p>
+<p>&nbsp;</p>
+<h4>Example - enumerate services</h4>
+<pre class=cod><span class=lib>Services.</span><span class=t>clsServices</span> ses.<span class=fq>_create</span>
+<span class=lib>Services.</span><span class=t>clsService</span> se
+<span class=fq>foreach</span> se ses
+<span class=i>&#9;</span><span class=fq>out</span> se.<span class=fd>DisplayName</span>
+<span class=i>&#9;</span>
+</pre>
+<p>&nbsp;</p>
+<h4>Example - state, start etc</h4>
+<pre class=cod><span class=lib>Services.</span><span class=t>clsService</span> se.<span class=fq>_create</span><span class=p></span>
+<span class=t>BSTR</span> dispName<span class=o>=</span><span class=s>&quot;Quick Macros&quot;</span>
+se.<span class=fd>DisplayName</span><span class=o>=</span>dispName
+<span class=fq>if</span><span class=p>(</span><span class=o>!</span>se.<span class=fd>ServiceType</span><span class=p>)</span> <span class=fq>mes</span><span class=o>-</span> <span class=s>&quot;Service not found.&quot;</span> <span class=s>&quot;&quot;</span> <span class=s>&quot;x&quot;</span>
+
+<span class=t>str</span> state
+<span class=fq>sel</span> se.<span class=fd>CurrentState</span>
+<span class=i>&#9;</span><span class=fq>case</span> <span class=lib>Services.</span><span class=d>Stopped</span> state<span class=o>=</span><span class=s>&quot;stopped&quot;</span>
+<span class=i>&#9;</span><span class=fq>case</span> <span class=lib>Services.</span><span class=d>Start_Pending_20</span> state<span class=o>=</span><span class=s>&quot;start pending&quot;</span>
+<span class=i>&#9;</span><span class=fq>case</span> <span class=lib>Services.</span><span class=d>Stop_Pending_20</span> state<span class=o>=</span><span class=s>&quot;stop pending&quot;</span>
+<span class=i>&#9;</span><span class=fq>case</span> <span class=lib>Services.</span><span class=d>Running</span> state<span class=o>=</span><span class=s>&quot;running&quot;</span>
+<span class=i>&#9;</span><span class=fq>case</span> <span class=lib>Services.</span><span class=d>continue_pending_20</span> state<span class=o>=</span><span class=s>&quot;continue pending&quot;</span>
+<span class=i>&#9;</span><span class=fq>case</span> <span class=lib>Services.</span><span class=d>Pause_Pending_20</span> state<span class=o>=</span><span class=s>&quot;pause pending&quot;</span>
+<span class=i>&#9;</span><span class=fq>case</span> <span class=lib>Services.</span><span class=d>Paused</span> state<span class=o>=</span><span class=s>&quot;paused&quot;</span>
+<span class=i>&#9;</span><span class=fq>case</span> <span class=fq>else</span> state<span class=o>=</span><span class=s>&quot;unknown&quot;</span>
+
+<span class=t>int</span> i<span class=o>=</span><span class=fu>ListDialog</span><span class=p>(</span><span class=s>&quot;Start[]Stop[]Pause[]Continue&quot;</span> F<span class=s>&quot;Current state: {state}&quot;</span><span class=p>)</span>
+<span class=fq>if</span><span class=p>(</span><span class=o>!</span>i<span class=p>)</span> <span class=fq>ret</span>
+<span class=fq>if</span><span class=p>(</span><span class=o>!</span><span class=fd>IsUserAdmin</span><span class=p>)</span> <span class=fq>mes</span><span class=o>-</span> <span class=s>&quot;To change service state, QM must be running as admin.&quot;</span> <span class=s>&quot;&quot;</span> <span class=s>&quot;x&quot;</span>
+<span class=fq>sel</span> i
+<span class=i>&#9;</span><span class=fq>case</span> <span class=n>1</span> se.<span class=fd>StartService</span>
+<span class=i>&#9;</span><span class=fq>case</span> <span class=n>2</span> se.<span class=fd>StopService</span>
+<span class=i>&#9;</span><span class=fq>case</span> <span class=n>3</span> se.<span class=fd>PauseService</span>
+<span class=i>&#9;</span><span class=fq>case</span> <span class=n>4</span> se.<span class=fd>ContinueService</span>
+</pre>
+<p>&nbsp;</p>
+<p>The classes included in this library are: 
+</p>
+
+<p>&nbsp;</p>
+<div align="center">
+
+<table border="1" cellpadding="2" cellspacing="0" width="100%">
+  <tr>
+    <td width="100%" colspan="2" align="center"><strong>clsServices<br>
+    </strong>This class can be used to list and access services in a system. You
+    can specify what type of services to want to have listed.</td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">Properties:<ul>
+      <li>ComputerName. By default, this property is
+        set to the name of the computer in which the library is running. You can specify the name
+        of another computer to access the services running there.</li>
+      <li>Count. Number of services listed.</li>
+      <li>Item(Index). This property will take
+        you to a clsService object that contains the properties and the methods to access the
+        service specified. You can specify a service by putting the number that is has in the
+        collection or by passing its name.</li>
+      <li>ServicesEnumState. The possible
+        values for this property are: Active Services, Both Active and Inactive Services or
+        Inactive Services. Specify here what type of services you want to list. The library will
+        update itself if this property is changed.</li>
+      <li>ServicesEnumType. The possible
+        values for this property are: WIN32 Services, Kernel and File System Drivers or Both WIN32
+        and Drivers. Specify here what type of services you want to have listed. The library will
+        update itself if this property is changed.</li>
+    </ul>
+    </td>
+    <td width="50%" valign="top">Methods:<ul>
+      <li>Delete(Index). Pass the number that a
+        service has in the collection or the name of a service to delete it. The method returns
+        True (nonzero) if successful or False (0) if there was an error. After you delete a service, it is not
+        immediately removed from the services, if it has references to it. If you try to call the
+        function again after you got True (successful), the method will return False.</li>
+      <li>Refresh. Call this method to refresh the
+        contents of the object. Returns True if successful or False if there was an error.</li>
+    </ul>
+    </td>
+  </tr>
+</table>
+</div>
+
+<p>&nbsp;</p>
+<div align="center">
+
+<table border="1" cellpadding="2" cellspacing="0" width="100%">
+  <tr>
+    <td width="100%" colspan="2" align="center"><strong>clsService<br>
+    </strong>This class is returned by the clsServices class (one per service
+    listed), but you can also use it independently to access a specific system, in the local
+    machine or through a network. To access a specific service, just set the name or the
+    display name of the service you want to access. The class will update itself automatically
+    with the information of the service. Using this class you can also start, stop, pause or
+    continue services.<br>
+    <i>(r/w) means read/write property; (r-o) means read-only property.</i></td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top" rowspan="2">Properties:<ul>
+            <li>AutoUpdate (r/w). If this property is 
+              True (nonzero), when you tell the service to change its state (stop it, start 
+              it, pause it...) the library will start checking for the state of 
+              the service till its state changes completely or till the time specified 
+              in AutoUpdateTimeOut expires. This is because usually a service 
+              doesn't change its state immediately, but needs some time for processing. 
+              Therefore, before when you changed the state of a service, the CurrentState 
+              property passed to something like 'Start Pending', and after that 
+              you had to refresh the state manually. This property is automatically 
+              True if you are using this class independently, and automatically 
+            False if you are accessing from a clsServices class.</li>
+      <li>AutoUpdateInterval (r/w). How often the
+        library will refresh the status of the service, given in milliseconds.</li>
+      <li>AutoUpdateTimeOut (r/w). If the service
+        doesn't change its status, for how long the library should keep refreshing its contents,
+        in milliseconds.</li>
+      <li>BinaryPathName (r/w). Path to the binary file of the
+        service.</li>
+      <li>CheckPoint.</li>
+      <li>ComputerName (r/w). By default, this
+        property is empty if you are using this class independently, or has the same value as the
+        class clsServices is this class is an item of the other. You can specify another name to
+        access a service in another computer.</li>
+      <li>ControlsAccepted (r-o).
+        Possible values are: Accept Pause &amp; Continue, Accept Shutdown or Accept Stop. Also, it
+        could be any combination of these values. To know if a service accepts a certain control,
+        use operator &amp;. Example: if(Svc.ControlsAccepted&amp;Accept_Stop_20).</li>
+      <li>CurrentState (r/w). Possible
+        values are: Continue Pending, Pause Pending, Paused, Running, Start Pending, Stop Pending
+        or Stopped. You can also set this property to Start, Stop or Pause to modify the state of
+        the service.</li>
+      <li>Dependencies (r/w). This
+        property will return an object that contains the dependencies of the service, if any. You
+        can also create this class independently and set it to this property to change the
+        dependencies of the service.</li>
+      <li>DisplayName (r/w). Display name for the
+        service (those you can see in the services control manager). If you change this property,
+        the class will look for another service that has that display name, and if it finds it, it
+        will update itself with the information of that service.</li>
+      <li>LoadOrderGroup (r/w).</li>
+      <li>Name (r/w). Internal name of the service.
+        You can change this property to the name of other service, and the class will update
+        itself with the configuration of that service.</li>
+      <li>Password (r/w). You can use this property
+        to change the password of the account under which a service is run. If you do it, this
+        property will also contain that password if the change is successful. If it is not, or you
+        haven't changed the password, this property will be empty (what doesn't mean that the
+        account doesn't have any password).</li>
+      <li>ServiceSpecificExitCode (r-o).</li>
+      <li>ServiceType (r/w). Possible values
+        are: File System Driver, Kernel Driver, WIN32 Own Process, WIN32 Share Process,
+        Interactive WIN32 Own Process or Interactive WIN32 Share Process.</li>
+      <li>StartErrorSeverity (r/w).
+        Possible values are: Ignore Error, Normal Error, Severe Error ore Critical Error. Informs
+        on how there server will act if an error ocurres at startup.</li>
+      <li>StartName (r/w). Depending on the type of service,
+        this can be the name of the account under which the service is running.</li>
+      <li>StartType (r/w). Possible values are:
+        Auto Start, Boot Start, Demand Start, Disabled, System Start. Indicates how the service is
+        started.</li>
+      <li>TagID (r/w).</li>
+      <li>WaitHint (r-o).</li>
+      <li>Win32ExitCode (r-o).</li>
+    </ul>
+    </td>
+    <td width="50%" valign="top">Methods:<ul>
+      <li>ChangeAccount(strUserID, strPassword, [strDomain]). If you want to change the account under which a
+        WIN32_OWN_Process service is run, you can't use the StartName and Password properties
+        independently, since both must be changed at the same time. Use this method instead.</li>
+      <li>ChangeDisplayName(strDisplayName). You can't use the DisplayName property because if you change it, the class will
+        just look for another service with that display name, instead of changing that property
+        for the current service. Use this method instead.</li>
+      <li>ContinueService. Use this method to
+        continue the service if it is paused. Returns True of successful or False if an error
+        ocurred.</li>
+      <li>PauseService.Use this method to pause a
+        service if it is running. Returns True of successful or False if an error ocurred.</li>
+      <li>StartService. Use this method to start a
+        service if it is stopped. Returns True of successful or False if an error ocurred.</li>
+      <li>StopService. Use this method to stop a
+        service if it is running. Returns True of successful or False if an error ocurred.</li>
+      <li>Refresh. Forces the library to update the information
+        about the service. Returns True of successful or False if an error ocurred.</li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">Events:<ul>
+      <li>StateChanged(lNewState). This
+        event is fired when the service changes its status.</li>
+    </ul>
+    </td>
+  </tr>
+</table>
+</div>
+
+<p>&nbsp;</p>
+<div align="center">
+
+<table border="1" cellpadding="2" cellspacing="0" width="100%">
+  <tr>
+    <td width="100%" colspan="2" align="center"><strong>clsSVCDependencies<br>
+    </strong>This object is used to manage dependencies of the services.</td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">Properties:<ul>
+      <li>Count. Number of dependencies being listed.</li>
+      <li>Item(lIndex). Pass a number and
+        this property returns the dependency that has that number in the collection.</li>
+      <li>Source. This property returns a char 0
+        divided string with the dependencies. This is how they are originally given by the system.</li>
+    </ul>
+    </td>
+    <td width="50%" valign="top">Methods:<ul>
+      <li>Add(strCad). Use this method to add a
+        dependency to the object.</li>
+      <li>Remove(lIndex). Use this method
+        to remove dependencies from the object.</li>
+    </ul>
+    </td>
+  </tr>
+</table>
+</div>
+
+<p>&nbsp;</p>
+
+<p align="center">&copy; <a
+href="mailto:merlin@sevillaonline.com">Alvaro Redondo</a>, 1998. All Rights Reserved.<br>
+<a href="http://www.sevillaonline.com/ActiveX" target="_blank">http://www.sevillaonline.com/ActiveX</a></p>
+</body>
+</html>
