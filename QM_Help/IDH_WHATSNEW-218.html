@@ -1,0 +1,1189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<head>
+<script type="text/javascript" src="../h.js"></script>
+
+<title>What's new in versions 2.1.0 - 2.3.2</title>
+
+<link rel=StyleSheet href="../QM-Help.css">
+<style> li { margin-bottom: 5pt; } </style>
+
+</head>
+
+<body>
+
+<h1>What's new in versions 2.1.0 - 2.3.6</h1>
+
+<h2>QM 2.3.6   (August 26, 2013)</h2>
+<p>&nbsp;</p>
+<p>Exact version: 2.3.6.5.</p>
+<p>&nbsp;</p>
+<h3>Main new features</h3>
+<ol>
+  <li>Supports DPI-scaled windows.</li>
+  <li>Bug fixes.</li>
+</ol>
+<h3>All new features</h3>
+<ol>
+  <li>Supports <a href="../Other/IDP_DPI.html">DPI-scaled windows</a>.</li>
+  <li>New functions:
+  <ul>
+    <li><span class="type">Htm</span>.<span class="UDF">Hwnd</span>.</li>
+  </ul></li>
+  <li>New in:
+    <ul>
+      <li><a href="../Commands/IDP_MOV.html" class="blue">mov</a>: option + (move and resize).</li>
+      <li><a href="../Flow/IDP_END.html" class="blue">end</a>: flag 32 (temporary).</li>
+    </ul>
+  </li>
+  <li>Bug fixes:
+    <ul>
+      <li>QM 2.3.5 bug: sometimes QM crashes when collapsing a folder.</li>
+      <li>QM 2.3.5 bug in Dialog Editor: when adding control, sometimes moves other control.</li>
+      <li>Sometimes incorrectly records mouse movements.</li>
+      <li>When ending debug mode, sometimes executes some more code.</li>
+      <li>Autotext triggers: sometimes does not work if not using low level hooks.</li>
+      <li>Sometimes QM or some running thread stops working after creating exe.</li>
+      <li>In QM 2.3.6.3-5 fixed bugs in Sqlite.Open. Added more declarations in ref __sqlite. Fixed bugs in demo macros.</li>
+      <li>And more.</li>
+    </ul>
+  </li>
+  <li><span class="red">What can be incompatible with previous versions:</span>
+    <ul>
+      <li>In <a href="../Other/IDP_DPI.html">DPI-scaled windows</a> old QM would record mouse clicks with incorrect coordinates. In some cases the macro would work anyway, but now it will not work, need to record again. Same with all mouse and window functions that use coordinates (x, y, width, height) in DPI-scaled windows.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2>QM 2.3.5   (July 21, 2013)</h2>
+<p>&nbsp;</p>
+<p>Exact version: 2.3.5.12.</p>
+<p>&nbsp;</p>
+<h3>Main new features</h3>
+<ol>
+  <li>Can run as portable app.</li>
+  <li>Can compile and execute C# and VB.NET code.</li>
+  <li>Several new functions. Improvements in some functions and other features.</li>
+  <li>Bug fixes.</li>
+</ol>
+<h3>All new features</h3>
+<ol>
+  <li>Can be installed in a USB drive and run as <a href="../Other/IDP_PORTABLE.html">portable</a> app.</li>
+  <li>Class <span class="type">CsScript</span>, functions <span class="UDF">CsExec</span>, <span class="UDF">CsFunc</span>, <span class="UDF">VbExec</span>, <span class="UDF">VbFunc</span>. Compiles and executes C# or VB.NET code.</li>
+  <li>Other new functions and classes:
+  <ul>
+    <li><a href="../User/IDP_QMDLL.html#PerfFirst" class="dll">PerfFirst, PerfNet, PerfOut</a>. Shows time spent executing code.</li>
+    <li><span class="UDF">CompareFilesInFolders</span>, <span class="UDF">InputBox</span>.</li>
+    <li><a onClick="doSection(func235)" class="expand">More</a>.
+      <div id="func235" class="expand">
+     <ul>
+    <li><span class="UDF">DT_SetAccelerators</span> (dialog hotkeys), <span class="UDF">TriggerInfoAutotext</span>, <span class="UDF">MessageLoopOptions</span>, <span class="UDF">GetNetRuntimeFolder</span>.</li>
+    <li><span class="type">__ComActivator</span> and <span class="UDF">__ComActivator_CreateManifest</span>. Use COM and .NET COM components without registry.</li>
+    <li><span class="type">__SharedMemory</span>. Memory that can be used by multiple processes.</li>
+    <li><a href="../User/IDP_QMDLL.html#GetCallStack" class="dll">GetCallStack</a>, <a href="../User/IDP_QMDLL.html#IsValidCallback" class="dll">IsValidCallback</a>.</li>
+     </ul>
+     </div>
+    </li>
+  </ul></li>
+  <li>New in:
+    <ul>
+      <li><span class="UDF">GetFilesInFolder</span> can get file size or time; easy to sort.</li>
+      <li><a href="../Commands/IDP_OPT.html" class="blue">opt</a>: nowarningshere, noerrorshere. In 2.3.5.9 fixed noerrorshere bug: <span class="blue">err</span> does not work in the function.</li>
+      <li><a href="../Flow/IDP_END.html" class="blue">end</a>: flag 16 (append last dll error string).</li>
+      <li><a href="../Functions/IDP_TOK.html" class="blue">tok</a>: Can trim blanks, etc.</li>
+      <li><a href="../str/IDP_S_LCASE.html">str.ucase, str.lcase</a>: can convert part of string.</li>
+      <li>New <a href="../Language/IDP_SPECVAR.html">predefined variable</a> _portable.</li>
+      <li>New <a href="../Other/IDP_SEARCHPATHS.html">special folders</a> $drive$ and $temp qm$.</li>
+      <li><a href="../str/IDP_S_FILE.html">str.setfile</a> and most other QM file-write functions: auto-creates parent folder.</li>
+      <li><a href="../User/IDP_IXML.html" class="type">IXml, IXmlNode</a>: More features in <span class="dll">Path</span> and some other functions.</li>
+      <li>Make exe: Adds text of macros from string constants like &quot;macro:MacroName&quot;. <a href="../Language/IDP_DIR_EXE.html">Read more</a>.</li>
+      <li>And more. To find all, search for string 2.3.5 in this Help file and in QM.  </li>
+    </ul>
+  </li>
+  <li><a href="IDH_TSM.html">Autotext</a> (TS menu): Supports items that begin with a delimiter character.</li>
+  <li><a href="IDH_TRIG_SM.html">Shell menu triggers</a>: Improvements and optimizations.</li>
+  <li><a href="IDH_SETT_FILES.html">File saving and backup</a>: Improvements and optimizations.</li>
+  <li>Recording: Now also records mouse wheel and X1/X2 buttons.</li>
+  <li><a href="../Other/IDP_QMTL.html">Unlock computer</a>: can run a program.</li>
+  <li>Some <a onClick="doSection(varConv)" class="expand">changes</a> in VARIANT and ARRAY.
+    <div id="varConv" class="expand">
+    <ul>
+    <li>Fixed bugs and removed some limitations in assignment VARIANT=ARRAY.</li>
+    <li>Converts array type in assignments ARRAY(BSTR)=ARRAY(str), VARIANT=ARRAY(str) and vice versa.</li>
+    <li>VARIANT better supports long (64-bit integer) type. Added member llVal etc. In assignment VARIANT=long, stores the value as VT_I8 (previously VT_DECIMAL). And more.</li>
+    <li>In assignment VARIANT=&amp;Function, stores the value as VT_I4 (previously VT_I4|VT_BYREF).</li>
+    </ul>
+    </div>
+  </li>
+  <li><a href="../Language/IDP_FSTRING.html">Multiline strings</a> in the code editor: String color. F-string variables also colored correctly.</li>
+  <li>Some more tooltips and polishing in Options, Find and other dialogs.</li>
+  <li>Bug fixes:
+    <ul>
+      <li>Memory leaks.</li>
+      <li>Mouse double movement triggers don't work.</li>
+      <li>Keyboard triggers: with some macros, after Alt+key or similar trigger, for several seconds behaves like if Alt is pressed.</li>
+      <li>Often fails to find accessible object in Firefox first time if without waiting.</li>
+      <li>And more.</li>
+    </ul>
+  </li>
+  <li><span class="red">What can be incompatible with previous versions:</span>
+    <ul>
+      <li>If you have functions  with same names as the new functions, will need to rename or delete  them.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2>QM 2.3.4   (February 2, 2013)</h2>
+<p>&nbsp;</p>
+<p>Exact version: 2.3.4.8.</p>
+<p>&nbsp;</p>
+<h3>Main new features</h3>
+<ol>
+  <li>Window text capturing.</li>
+  <li> Improvements in many functions and other features.</li>
+  <li>Bug fixes.</li>
+</ol>
+<h3>All new features</h3>
+<ol>
+  <li><span class="type">WindowText</span> class. Captures window text, clicks an item, etc. Look in floating toolbar -&gt; Windows, controls.</li>
+  <li>New functions:
+    <ul>
+      <li><span class="UDF">ChangeFileSecurity</span>, <span class="UDF">CaptureWindowAndRect</span>, <span class="UDF">WshExec</span>, <a href="../User/IDP_QMDLL.html#RtOptions" class="dll">RtOptions</a>, <a href="../User/IDP_QMDLL.html#QmSetWindowClassFlags" class="dll">QmSetWindowClassFlags</a>.</li>
+    </ul>
+  </li>
+  <li>New in:
+    <ul>
+    <li>Dialogs: easy tooltips. Look in Dialog Editor.</li>
+    <li><a href="../Language/IDP_FSTRING.html">F strings</a>: Coloring etc, like in other code. Supports strings in variable fields, enclosed in `.</li>
+    <li><a href="../Functions/IDP_WIN.html" class="blue">win</a>, <a href="../Functions/IDP_CHILD.html" class="blue">child</a>: New syntax with CSV string instead of x y. Can find window containing specified child window. <span class="blue">child</span> supports Windows Forms (.NET) control name, accessible name and more.</li>
+    <li><span class="blue">but</span>: Supports Windows Forms (.NET) controls better.</li>
+    <li><a href="../Commands/IDP_WAIT_FOR.html" class="blue">wait</a> WT: wait for specified window name.</li>
+    <li><a href="../Commands/IDP_RUN.html" class="blue">run</a>: added flag to run 64-bit system programs.</li>
+    <li><span class="blue">bee</span>: Supports &quot;:resId file.wav&quot; syntax that allows to easily add the wav file to <a href="IDH_MAKEEXE.html">exe</a>.</li>
+    <li><a href="../Language/IDP_DIR_EXE.html">#exe addfile</a>: supports any resource type.</li>
+    <li>Make exe: can add version info.</li>
+    <li><span class="type">IStringMap</span>, <span class="type">ICsv</span>, <span class="type">IXml</span>: Supports <span class="blue">_create</span>. Added member functions to set flags.</li>
+    <li><a href="../User/IDP_ICSV.html" class="type">ICsv</a>: New functions Find, AddRow2, FromArray, ToArray.</li>
+    <li><span class="type">Database</span>: <span class="UDF">CsAccess</span> and <span class="UDF">CsExcel</span> support file formats used by Office 2007+.</li>
+    <li>Supports png images in dialogs etc.</li>
+    <li>File triggers: Can watch only files, only folders, or all.</li>
+    <li>Window class name in all QM functions and triggers can be with wildcard characters. Previously would need a flag.</li>
+    <li>New QM output <a href="../Other/IDP_F1.html">tags</a>: mes, out.</li>
+    <li>More options in some other functions.</li>
+    </ul>
+  </li>
+  <li>It is possible to <a href="../_COM/IDP_COM_USAGE.html">use COM components without registration</a>.
+    <ul>
+      <li>Exe: don't need to register QM COM components on other computers. These are mailbee.dll (used by QM email functions) and arservicesmgr.dll (used with Services functions). Need just these dlls in exe folder.</li>
+    </ul>
+  </li>
+  <li>Optimizations, changes, etc:
+    <ul>
+      <li>Better Windows 8 compatibility.</li>
+      <li>Removed qm64 process on 64-bit Windows.</li>
+      <li>Simplified floating toolbar dialogs. Added tooltips.</li>
+      <li>Recording: Removed some options. Added 'Slow' option. Generates more comments. And more.</li>
+      <li>Removed &quot;QM always on top&quot; view. Instead you can use floating output and status bar windows.</li>
+      <li>Most global run-time options moved from Options dialog to function <a href="../User/IDP_QMDLL.html#RtOptions" class="dll">RtOptions</a>.</li>
+      <li>Make exe: Removed 'Compress' option, because of possible problems with antivirus software.</li>
+      <li>Macros that <a href="IDH_MAKEEXE.html">run in separate process</a> now by default use a small .qmm file instead of .exe file.</li>
+      <li>QM enables <a href="../Functions/IDP_ACCESSIBLE.html">Chrome accessible objects</a>.</li>
+    </ul>
+    </li>
+  <li>Bug fixes:
+    <ul>
+      <li>F strings, when used as a function argument: error or incorrect result if [digits] used in a variable. Example: <span class=cod><span class=fq>act</span> <span class=o>F</span><span class=s>&quot;{</span>a[<span class=n>0</span>]<span class=s>}&quot;</span></span>.</li>
+      <li>Operator <a href="../Language/IDH_OPERATORS.html" class="blue">or</a>: If first operand nonzero, returns its value (must be 1). It's not a problem in most cases, because the value itself is rarely used. Another bug - does not work if first operand is double. Added warning for yet another bug that cannot be fixed.</li>
+      <li><span class="UDF">DaysInMonth</span>: no leap year correction at 100/400 years. Also in <span class="type">DateTime</span> functions <span class="UDF">AddMonths</span> and <span class="UDF">AddYears</span>.</li>
+      <li><span class="UDF">TimeSpanFromStr</span>: may incorrectly parse string if without days.</li>
+      <li>Process triggers: if 'Already running' selected, the macro runs before initializing QM extensions and user startup functions.</li>
+      <li>Keyboard triggers: don't work repeated triggers with modifier keys.</li>
+      <li>And more.</li>
+    </ul>
+  </li>
+  <li><span class="red">What can be incompatible with previous versions:</span>
+    <ul>
+      <li>If you have functions  with same names as the new functions, will need to rename or delete  them.</li>
+      <li>Removed function <a href="../Functions/IDP_SHARE.html" class="blue">share</a>.</li>
+      <li>If you use the 'Favorite dialogs' feature (in floating toolbar), may need to rebuild your favorites, because there are changes in dialogs.</li>
+    </ul>
+  </li>
+</ol>
+<p>Below are some changes since QM 2.3.4.3. Also included above.</p>
+<p>&nbsp;</p>
+<p>QM 2.3.4.4-8.</p>
+<ol>
+  <li><a href="../Commands/IDP_RUN.html" class="blue">run</a>: added flag to run 64-bit system programs.</li>
+  <li>Macros that <a href="IDH_MAKEEXE.html">run in separate process</a> now by default use a small .qmm file instead of .exe file.</li>
+  <li>Supports png images in dialogs etc.</li>
+  <li>QM enables <a href="../Functions/IDP_ACCESSIBLE.html">Chrome accessible objects</a>.</li>
+  <li>QM 2.3.4.7 fixed QM 2.3.4.6 bug: QM always runs in Unicode mode, even if you uncheck it.</li>
+  <li>QM 2.3.4.8 fixed some small bugs.</li>
+</ol>
+<h2>QM 2.3.3   (March 10, 2012)</h2>
+<p>Exact version: 2.3.3.7</p>
+<p>&nbsp;</p>
+<h3>Main new features</h3>
+<ol>
+  <li>New UI object (<span class="type">Acc</span> etc) functions. Other new or improved functions.</li>
+  <li>New or improved information features: annotations, errors, function info/help, coloring, <span class="blue">key</span> comments.</li>
+  <li>New <a href="IDH_TSM.html">autotext list</a> (TS menu) features.</li>
+  <li>Bug fixes.</li>
+</ol>
+<h3>All new features</h3>
+<ol>
+  <li>New in UI objects:
+    <ul>
+  <li><a href="../Functions/IDP_ACC.html" class="blue">acc</a> flags: 0x2000 - search only in  web page (faster). 0x4000 - use more properties, including HTML attributes.</li>
+  <li>New <span class="type">Acc</span> functions: <span class="UDF">Find</span> (replaces <span class="blue">acc</span>), <span class="UDF">FindFF</span> (faster, Firefox/Chrome), <span class="UDF">WebScrollTo</span>, <span class="UDF">WebAttribute</span>, <span class="UDF">CbSelect</span> and more.</li>
+  <li>New class <span class="type">FFNode</span>. Firefox/Chrome  HTML nodes.</li>
+  <li>New <span class="type">Htm</span> functions: <span class="UDF">FromAcc</span>, <span class="UDF">FromXY</span>, <span class="UDF">DocProp</span>.</li>
+    </ul>
+</li>
+  <li>New functions and classes:
+    <ul>
+      <li>Class <span class="type">__Settings</span>. Manages settings that you use in a macro.</li>
+      <li>New <span class="type">str</span> functions: <span class="UDF">UniqueFileName</span>, <span class="UDF">LimitLen</span>, <span class="UDF">GetClipboardHTML</span>.</li>
+      <li>New <span class="type">HtmlDoc</span> functions: <span class="UDF">SetOptions</span>, <span class="UDF">Delete</span>.</li>
+      <li>New <span class="type">ExcelSheet</span> functions/options<span class="UDF"></span><span class="UDF"></span>.</li>
+      <li><span class="UDF">ExeFullPath</span>, <span class="UDF">ExeParseCommandLine</span>, <span class="UDF">ExeQmGridDll</span>, <span class="UDF">MakeExeCloseRunning</span>, <span class="UDF">DT_SetTextColor</span>, <span class="UDF">DT_SetBackgroundColor</span>, <span class="UDF">DT_SetBackgroundImage</span>, <span class="UDF">OutStatusBar</span>, <span class="UDF">TriggerInfoTsMenu</span>, <span class="UDF">EndThread</span>.</li>
+      <li><a href="../Commands/IDP_PASTE.html" class="blue">paste</a>. Alias for <span class="blue">outp</span>.</li>
+    </ul>
+  </li>
+  <li>New options and improvements in:
+    <ul>
+    <li><a href="../Commands/IDP_KEY.html" class="blue">key</a>: can repeat a key. Text (<span class="blue">key</span> &quot;text&quot;) does not depend on state of Caps Lock, Shift, Ctrl, Alt, Win.</li>
+    <li><a href="../Flow/IDP_IFK.html" class="blue">ifk</a>, <a href="../Flow/IDP_IFF.html" class="blue">iff</a>, <a href="../Flow/IDP_IFA.html" class="blue">ifa, ifi</a>: can be used as functions.</li>
+  <li><a href="../Functions/IDP_SCAN.html" class="blue">scan</a>, <span class="blue">wait</span> S: can find all.</li>
+  <li><a href="../Commands/IDP_OPT.html" class="blue">opt</a>, <span class="blue">getopt</span>: keychar.</li>
+  <li><span class="UDF">ShowDialog</span>: flag 128 - hidden.</li>
+  <li><a href="../Commands/IDP_TIM.html" class="blue">tim</a>: flag 2 - one-shot timer.</li>
+  <li><a href="../User/IDP_ISTRINGMAP.html" class="type">IStringMap</a>: <span class="UDF">AddList</span> and <span class="UDF">GetList</span> support CSV.</li>
+  <li><span class="dll">StrCompareEx</span>, <span class="type">ICsv</span>.<span class="UDF">Sort</span>, <span class="type">DlgGrid</span>.<span class="UDF">Sort</span> and <span class="type">ARRAY</span>.<span class="blue">sort</span>: flag to sort as date.</li>
+  <li><a href="../Commands/IDP_RUN.html" class="blue">run</a>, <a href="../Functions/IDP_GETOPT.html" class="blue">getopt</a>, <a href="../Functions/IDP_NEWITEM.html" class="blue">newitem</a>, <span class="UDF">AutoPassword</span>, <span class="UDF">QmHelp</span>, <span class="UDF">CaptureImageOrColor</span>, <span class="type">__Font</span>.<span class="UDF">Create</span>, <span class="UDF">RunAs</span>, <span class="type">Sqlite</span>.<span class="UDF">ToQmGrid</span>, <span class="type">str</span>.<a href="../str/IDP_S_FIX.html">fix</a>, <span class="type">str</span>.<a href="../str/IDP_S_DATA.html">flags</a>, <span class="type">Htm</span>.<span class="UDF">Attribute</span>.</li>
+  <li>More options in string functions that use <a href="../Other/IDP_TABLEOFDELIM.html">delimiter characters</a>.</li>
+  <li>String formatting functions: <a href="../Tables/IDP_PRINTF.html">%S, %C, %m, %#s</a>.</li>
+  </ul>
+  </li>
+  <li>New in run-time errors:
+    <ul>
+      <li>Defined <a href="../Language/IDP_SPECVAR.html">constants</a> for  errors.</li>
+      <li>Added menu Run -&gt; Show RT Errors. Read more in <a href="../Flow/IDP_ERR.html" class="blue">err</a> help.</li>
+      <li>For user-defined functions, shows errors in <a href="../Other/IDP_F1.html">function help</a>.</li>
+      <li><a href="../Flow/IDP_END.html" class="blue">end</a>: flag 8 (warning).</li>
+      <li><a href="../Commands/IDP_OPT.html" class="blue">opt</a>, <span class="blue">getopt</span>: nowarnings.</li>
+    </ul>
+  </li>
+  <li>New in <a href="../Other/IDP_F1.html">function help and tags</a>:
+<ul>
+      <li>Some new tags and other features.</li>
+      <li> Better formatting of function help.</li>
+      <li> Function help editor.</li>
+    </ul>
+</li>
+  <li>New in status bar:
+    <ul>
+      <li>Shows more function info. Colored.</li>
+      <li>Shows  function info when caret is in its arguments.</li>
+      <li>Shows  function info when you click a function in popup lists.</li>
+      <li>You can set status bar text. Use  <span class="UDF">OutStatusBar</span>. Supports <a href="../Other/IDP_F1.html">tags</a>, like with <span class="blue">out</span>.</li>
+      <li> Can show &gt; 2 lines. Vertical scrollbar. Wraps lines.</li>
+      <li>Added  menu. You can turn off mouse info, etc.</li>
+    </ul>
+</li>
+  <li>New in code editor:
+    <ul>
+      <li>Can be set style for variables.</li>
+      <li> Member functions now are colored.</li>
+      <li> Shows modified lines in selection bar.</li>
+      <li>'Find' dialog: Highlights all if you click 'Find Text' button with Ctrl. Added 'Dialog 2' button (use two Find dialogs).</li>
+      <li>And more.</li>
+    </ul>
+</li>
+  <li>New in <a href="IDH_TSM.html">autotext lists</a> (TS menus):
+    <ul>
+      <li>Text trigger. Don't need a key  trigger before typing text.</li>
+      <li>Options for posfix.</li>
+      <li>Shows popup list if several items match.</li>
+      <li>And more.</li>
+    </ul>
+  </li>
+  <li>New in recording:
+    <ul>
+    <li><a href="IDH_RECORD.html">Records</a> text keys as characters, not as key codes.</li>
+    <li>Adds comments with decoded keys.</li>
+  </ul>
+  </li>
+  <li>New in tool dialogs:
+  <ul>
+    <li>The Keys dialog easier to use.</li>
+    <li>New dialog: Edit application command keys (floating toolbar -&gt; more tools). You can change or disable actions assigned to keys such as Back, Mute, Calculator.</li>
+  </ul>
+  </li>
+  <li>Updated documentation of many functions.</li>
+  <li>Can show annotations with short function descriptions. Menu -&gt; Help -&gt; Annotations.</li>
+  <li>Added <a href="../Other/IDP_TYPESPEC.html">type declaration character</a> ` for <span class="type">VARIANT</span>.</li>
+  <li>New triggers:  QM events -&gt; QM show, QM hide, Recording ended.</li>
+  <li><a href="../Commands/IDP_PASTE.html">Hybrid paste</a>.</li>
+  <li>More templates in menu -&gt; File -&gt; New -&gt; Templates.</li>
+  <li>New in <a href="IDH_TOOLBARMENU.html">toolbar right-click menu</a>: Hide if Fullscreen Window. Super On-Top (replaces the &quot;Toolbars: on-top&quot; checkbox in Options that previously would be applied to all free toolbars).</li>
+  <li>By default hides private Running items, eg QM extensions (System). To unhide, right click a folder or empty space.</li>
+  <li>Optimizations.</li>
+
+  <li>Bug fixes:
+    <ul>
+      <li>If base class is declared as private (<span class=cod><span class=fq>class</span> X <span class=p>:</span><span class=o>--</span>Y ...</span>), functions of the inherited class cannot access members of the base class.</li>
+      <li>QM hangs when using some user-defined classes, like this: <span class=cod><span class=fq>class</span> <span class=t>CFont</span> <span class=p>:</span><span class=o>-</span><span class=t>GdiObject</span><span class=p>'</span>g</span>.</li>
+      <li><span class=cod>pointer._new<span class=p>(</span>variable<span class=p>)</span></span> returns incorrect value. Same with _resize.</li>
+      <li><span class=cod><span class=fq>wait</span> ... S <span class=s>&#34;macro:...&#34;</span></span> does not automatically add the macro to exe.</li>
+      <li>Fixed problems with processes that are started using short path (eg c:\xxxxxx~1\yyyyyy~2.exe). Then in some cases  triggers and process functions did not work as expected, because   QM used short path. Now QM always uses long path. Also fixed problems with long process filenames on Windows 2000.</li>
+      <li><span class=cod><span class=fq>getopt</span><span class=p>(</span>speed <span class=n>4</span><span class=p>)</span></span> always returns 0.</li>
+      <li><span class="type">Htm</span>.<span class="UDF">Attribute</span> flags ignored.</li>
+      <li>Gets incorrect location of some html elements  in IE8/9: when zoom is not 100%; in some frames/iframes; some AREA elements.</li>
+      <li><span class="blue">acc</span> does not find CLIENT of frames/iframes in Internet Explorer.</li>
+      <li><span class="blue">acc</span> fails if <b>window</b> is accessible object and used &gt; 8 arguments.</li>
+      <li><span class="blue">acc</span> in some windows is too slow if flag 128 (reverse).</li>
+      <li><span class="blue">key</span> &quot;text&quot; may type incorrect text if the active window uses a non-default keyboard layout.</li>
+      <li>Array elements cannot be used as some arguments of some QM intrinsic functions.</li>
+      <li>Cannot return some types (e.g. Acc) from user-defined functions. Exception or some other error.</li>
+      <li>On some XP computers does not show &quot;Temporarily Unlock Computer&quot; configuration dialog.</li>
+      <li>Sometimes does not add tray icon at Windows startup.</li>
+      <li>QM tray icon problems on Windows XP if taskbar is auto-hide.</li>
+      <li><span class="UDF">ProcessNameToId</span> does not support special folders. Also third parameter of <span class="blue">win</span>.</li>
+      <li>Cannot be used [0] in F strings, like <span class=cod>F<span class=s>&quot;{s[0]}&quot;</span></span>.</li>
+      <li>Mouse double click triggers don't always work if not using low level hook.</li>
+      <li>Temporarily Unlock Computer: sending Ctrl+Alt+Delete does not work on Windows Vista/7.</li>
+      <li>Accessible object triggers often don't work on  64-bit Windows.</li>
+      <li>str.escape bugs.</li>
+      <li><span class="blue">_getactive</span> may return object of incorrect type when wildcard used.</li>
+      <li>Passing  COM interface variables to user-defined functions:  if type different,  later does not release the object.</li>
+      <li>QM crashes if <span class="blue">newitem</span> called while editing  a macro name or called repeatedly with flag 8.</li>
+      <li><span class="blue">tim</span>: if there are multiple timers, cannot stop some of them.</li>
+      <li><span class="blue">findl</span>: does not work if <b>n</b> omitted.</li>
+      <li>And more.</li>
+    </ul>
+</li>
+  <li><span class="red">What can be incompatible with previous versions:</span>
+    <ul>
+      <li>If you have functions  with same names as the new functions, will need to rename or delete  them. Same with  classes and other declarations.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Below are some changes since QM 2.3.3.4. Also included above.</p>
+<p>&nbsp;</p>
+<p>QM 2.3.3.5 - 7</p>
+<ol>
+  <li>New <span class="type">ExcelSheet</span> functions/options<span class="UDF"></span>.</li>
+  <li>New functions: <span class="type">str</span>.<span class="UDF">LimitLen</span>, <span class="type">str</span>.<span class="UDF">GetClipboardHTML</span>, <span class="type">Acc</span>.<span class="UDF">GetChildObjects</span>, <span class="UDF">MakeExeCloseRunning</span>, <span class="UDF">EndThread</span>.</li>
+  <li>Autotext list (TS menu) option /m (confirm).</li>
+  <li><a href="../Commands/IDP_PASTE.html">Hybrid paste</a>.</li>
+  <li>Added keyword <span class="blue">paste</span>, as alias for <span class="blue">outp</span>.</li>
+  <li><a href="../User/IDP_ISTRINGMAP.html" class="type">IStringMap</a>: <span class="UDF">AddList</span> and <span class="UDF">GetList</span> support CSV.</li>
+  <li><span class="dll">StrCompareEx</span>, <span class="type">ICsv</span>.<span class="UDF">Sort</span>, <span class="type">DlgGrid</span>.<span class="UDF">Sort</span> and <span class="type">ARRAY</span>.<span class="blue">sort</span>: flag to sort as date.</li>
+  <li><span class="type">HtmlDoc</span>: with <span class="UDF">SetOptions</span> flags 1 or 2, may work slightly differently than in earlier QM 2.3.3 versions. Please test your code.</li>
+  <li>More templates in menu -&gt; File -&gt; New -&gt; Templates.</li>
+  <li>By default hides private Running items, eg QM extensions (System). To unhide, right click a folder or empty space.</li>
+  <li>More options in string functions that use <a href="../Other/IDP_TABLEOFDELIM.html">delimiter characters</a>.</li>
+  <li>New in <a href="IDH_TOOLBARMENU.html">toolbar right-click menu</a>: Hide if Fullscreen Window. Super On-Top (replaces the &quot;Toolbars: on-top&quot; checkbox in Options that previously would be applied to all free toolbars).</li>
+  <li>Some bugs fixed. QM 2.3.3 bugs: 1. Incorrect selection bar color. 2. str.gett works only with ASCII string. 3. Bad autotext synchronization in some cases. 4. HtmlDoc.SetOptions(2) does not work in exe. 5. Triggers don't work in some windows after restarting QM. 6. And more.</li>
+</ol>
+
+<h2>QM 2.3.2   (August 4, 2010)</h2>
+<p>Exact version: 2.3.2.8</p>
+<ol>
+  <li><a href="../Language/IDP_FSTRING.html">Variables in strings</a>.</li>
+  <li>New functions and classes. Many previously available in the forum.
+    <ul>
+      <li>Class <span class="type">MenuPopup</span> and function <span class="UDF">ShowMenu</span>.</li>
+      <li>Classes <span class="type">Sqlite</span> and <span class="type">SqliteStatement</span>. Sqlite database functions.</li>
+      <li>Class <span class="type">DateTime</span> and  functions <span class="UDF">TimeSpanFromParts</span>, <span class="UDF">TimeSpanFromStr</span>, <span class="UDF">TimeSpanGetParts</span>, <span class="UDF">TimeSpanGetPartsTotal</span>, <span class="UDF">TimeSpanToStr</span>, <span class="UDF">DaysInMonth</span>.</li>
+      <li>Class <span class="type">__Tcc</span>. Compile C code. Call functions from QM. Make exe, dll.</li>
+      <li> <span class="type">str</span> functions LoadUnicodeFile, SaveUnicodeFile, DateInFilename, SqlEscape, FromGUID.</li>
+      <li> <span class="type">ExcelSheet</span> functions SelectCell, SelectRange, GetSelectedRange, GetUsedRange, RunMacro.</li>
+      <li> <span class="type">HtmlDoc</span> function FindHtmlElement.</li>
+      <li>Functions <span class="UDF">FileTypeRegister</span>, <span class="UDF">FileTypeUnregister</span>, <span class="UDF">FileTypeAddVerb</span>, <span class="UDF">FileTypeRemoveVerb</span>, <span class="UDF">FileTypeSetDefaultVerb</span>.</li>
+      <li>Functions <span class="UDF">GetIdleTime</span>, <span class="UDF">WaitIdle</span>.</li>
+      <li>Functions <span class="UDF">SelStr</span>, <span class="UDF">SelInt</span>.</li>
+      <li>Functions <span class="UDF">HtmlToWebBrowserControl</span>, <span class="UDF">RemapKeyboardKeys</span>, <span class="UDF">outw</span>, <span class="UDF">MakeInt</span>, <span class="UDF">IntCheckConnection</span> (alias for <span class="UDF">IntPing</span>), <span class="type">Http</span>.<span class="UDF">Get</span>.</li>
+      <li>New dll functions <a href="../User/IDP_QMDLL.html#q_printf" class="dll">q_printf</a>, <a href="../User/IDP_QMDLL.html#q_sort" class="dll">q_sort</a>, <a href="../User/IDP_QMDLL.html#iscsym" class="dll">iscsym</a>, <a href="../User/IDP_QMDLL.html#DetectStringEncoding" class="dll">DetectStringEncoding</a>, <a href="../User/IDP_QMDLL.html#UnloadDll" class="dll">UnloadDll</a>, <a href="../User/IDP_QMDLL.html#ConvertSignedUnsigned" class="dll">ConvertSignedUnsigned</a>, <a href="../User/IDP_QMDLL.html#StrCompareEx" class="dll">StrCompareEx</a>, <a href="../User/IDP_QMDLL.html#QmCodeToHtml" class="dll">QmCodeToHtml</a>.</li>
+      <li> Categories <span class="lib">keytext</span> (replaces <span class="lib">io</span>), <span class="lib">_debug</span>, <span class="lib">_operator</span>, <span class="lib">_other</span>.</li>
+      <li>Directive <a href="../Language/IDP_DIR_RET.html" class="dir">#ret</a>.</li>
+      <li> <span class="lib">GDIP</span> reference file. GDI+ flat API declarations.</li>
+      <li>Several new <a href="../User/IDP_ICSV.html" class="type">ICsv</a> functions. Some functions have more options. All  functions can be used in exe.</li>
+      <li><a href="../User/IDP_QMGRID.html">QM_Grid</a> control enhancements. Class <span class="type">DlgGrid</span>. <span class="red">Possible incompatibility</span>: changed some  QM_Grid control features. If you used the control in your macros, please test them.</li>
+      <li><span class="type">Ftp</span> functions FileGetStr, FilePutStr, SetProgressDialog, SetProgressCallback.</li>
+      <li> <span class="type">Http</span> functions SetProgressDialog, SetProgressCallback, PostAdd, Get (replaces FileGet).</li>
+    </ul>
+  </li>
+  <li>More options in:
+    <ul>
+      <li><a href="../Language/IDP_CATEGORIES.html" class="blue">category</a>. Can be added class members and other strings.</li>
+      <li> <a href="../Functions/IDP_SCAN.html" class="blue">scan</a>. Find not exact match, search in background window,  in bitmap, and more.</li>
+      <li><span class="blue">wait</span>. Supports custom cursors. Look in the Wait dialog.</li>
+      <li><a href="../str/IDP_S_ENCRYPT.html">str.encrypt, str.decrypt</a>. LZO compression. MD5 of file.</li>
+      <li><a href="../User/IDP_QMDLL.html#Crc32" class="dll">Crc32</a>. CRC of file.</li>
+      <li> <a href="../Commands/IDP_ACT.html" class="blue">act</a>, <a href="../str/IDP_S_ESCAPE.html">str.escape</a>, <a href="../str/IDP_S_FILE.html">str.setfile</a>, <span class="UDF">OnScreenDisplay</span>.</li>
+      <li><a href="../Language/IDP_DIR_OPT.html">#opt hidedecl</a>.</li>
+      <li><span class="blue">type</span>. Easier nonstandard <a href="../Language/IDP_UNIONS.html">alignment</a>.</li>
+      <li><a href="../_COM/IDP_OLE_ARRAY.html" class="type">ARRAY</a>. One new function (insert). More options  in some functions.</li>
+      <li><a href="../str/IDP_S_STRUCT.html">str.getstruct</a>. Supports members of any type.</li>
+      <li><a href="../Commands/IDP_SHUTDOWN.html" class="blue">shutdown</a>. Flags 4 and 8 (synchronous).</li>
+      <li><span class="type">__Font</span>.Create. Angle, template.</li>
+      <li><span class="type">Ftp</span>.Connect. Passive.</li>
+      <li><span class="type">Ftp</span>.FileGet, <span class="type">Ftp</span>.FilePut, <span class="type">Http</span>.Post, <span class="type">Http</span>.PostFormData, <span class="UDF">IntGetFile</span>. All these functions now can: 1. Show progress dialog. 2. Use callback function. 3. Run in other thread. 4. Download to file.</li>
+      <li><span class="type">Http</span>.PostFormData. Can be used <span class="type">Http</span>.PostAdd instead of array.</li>
+    </ul>
+  </li>
+  <li>Enhancements in information features:
+    <ul>
+      <li><a href="IDH_TYPEINFO.html">Lists of functions</a> work better.  Better sorting, autocompletion, changed icons, and more.</li>
+      <li> Can erase category name when typed <tt>categoryname.</tt> and selected something from the list. Look in Options.</li>
+      <li>F2 works with class member variables and locally declared variables.</li>
+      <li>And more.</li>
+    </ul>
+  </li>
+  <li>Various enhancements:
+    <ul>
+      <li>Functions in <span class="lib">WINAPIV</span> and <span class="lib">WINAPI7</span> now are delay-loaded (dll-). Added some missing declarations.</li>
+      <li>In <a href="IDH_MAKEEXE.html">exe</a>, if a  dll  not found in exe folder, also searches in QM folder, if installed.</li>
+      <li>Possible to execute functions while compiling for exe. For example, <span class=cod><span class=dir>#compile</span><span class=o>*</span> <span class=fu>Function</span></span> previously was error.</li>
+      <li>Shift+drag selection of multiple QM items for cut/paste.</li>
+      <li><a href="../Commands/IDP_ACT.html" class="blue">act</a> works better with multiple Excel and PowerPoint document windows.</li>
+      <li>Accessible object triggers work in QM window.</li>
+      <li>&quot;Test&quot; button in &quot;Find Image&quot; and &quot;Enumerate Files&quot; dialogs.</li>
+      <li>List of QM shortcuts in &quot;Create shortcut&quot; dialog.</li>
+      <li><span class="type">ARRAY</span>, <span class="type">BSTR</span> and <span class="type">VARIANT</span> destructors don't reset <span class="dll">GetLastError</span>.</li>
+      <li>While QM is ending a thread (on &quot;end macro&quot; command, file reload, etc), the thread now can use <span class="blue">mac</span>, <span class="blue">dis</span> and other functions that previously would cause incorrect thread termination, especially if they were in destructors or <span class="blue">atend</span> functions.</li>
+    </ul>
+  </li>
+  <li>New tools:
+    <ul>
+      <li>Remap Keys. Look in floating toolbar, &quot;More Tools&quot; menu.</li>
+    </ul>
+  </li>
+  <li>Bug fixes:
+    <ul>
+      <li> Some functions unavailable in exe (<span class="type">__ProcessMemory</span>, <span class="UDF">GetListViewItemText</span>).</li>
+      <li>Incorrect mouse trigger hit test in some windows on Windows 7.</li>
+      <li> Sometimes missing tray icon at startup on Windows 7.</li>
+      <li> QM occasionally  hangs for several seconds when pressed hotkey or other trigger.</li>
+      <li><span class="blue">ret</span> returns invalid COM object in some cases.</li>
+      <li><span class="type">Dir</span>.FileSize returns incorrect file size of very big files.</li>
+      <li><span class="type">HtmlDoc</span> InitX functions may change some characters.</li>
+      <li><span class="type">DATE</span> from/to string assignment uses system default locale. If  date format of user and system default locales are different, possible  error or unexpected date string format. Now changed to user's lcale. <span class="red">Possible incompatibility:</span> now in such case will be different  date string format than  before.</li>
+      <li>Fixed several bugs related to declarations and  reference files.</li>
+      <li>Destructors and <span class="blue">atend</span> functions not always called when user ends thread without terminating.</li>
+      <li>On user accounts other than where QM was installed, does not work menu Edit -&gt; Active Items -&gt; Open Multiple -&gt; Open Automatically.</li>
+      <li><span class="type">ARRAY</span>.sort does not work with arrays of interface pointers.</li>
+      <li><span class="type">ARRAY</span> functions sort and shuffle don't work properly if lbound is not 0.</li>
+      <li>Cannot load imagelist bmp file in exe from resource.</li>
+      <li>In some cases allows to call  private functions of base class from  functiosn of inherited class.</li>
+      <li>And more.</li>
+    </ul>
+  </li>
+  <li><span class="red">What can be incompatible with previous versions:</span>
+    <ul>
+      <li>If you have functions  with same names as the new system functions, you will have to rename or delete  them. Same with  classes and other declarations.</li>
+      <li>See the red &quot;Possible incompatibility&quot; above.</li>
+    </ul>
+  </li>
+</ol>
+<h2>QM 2.3.1 (September 5, 2009)</h2>
+<p>Exact version: 2.3.1.9</p>
+<ol>
+  <li>Many internal code changes and optimizations.</li>
+  <li>Some new <a href="../Flow/IDP_DEB.html">debug features</a> - variables, 
+    call stack, and more.</li>
+  <li>New functions and classes: <a href="../str/IDP_S_TIMEFORMAT.html">str.timeformat</a>, <a href="../User/IDP_QMDLL.html#OutWinMsg" class="dll">OutWinMsg</a>, <a href="../User/IDP_QMDLL.html#Statement" class="dll">Statement</a>, <span class="UDF">PsCmd</span>, <span class="UDF">PsFile</span>, str.ConvertEncoding, <span class="type">__ProcessMemory</span>.</li>
+  <li>More options in: <a href="../Flow/IDP_DEB.html" class="blue">deb</a>, <a href="../Functions/IDP_TOK.html" class="blue">tok</a>, <a href="../str/IDP_S_DOSPATH.html">str.dospath</a>, Htm.CbSelect.</li>
+  <li>Works better: <span class="blue">acc</span> (with WPF windows), <span class="UDF">GetListViewItemText</span>.</li>
+  <li>Fast <a href="IDH_SETT_SECURITY.html">encrypting/decrypting</a> multiple QM 
+    items.</li>
+  <li>F1 and F2 in the <a href="IDH_INTERFACE.html">help search field</a> work 
+    in a similar way as in the code editor.</li>
+  <li><a href="IDH_MENU_TOOLS.html">Output history</a>.</li>
+  <li>Added <a href="../Language/IDP_REF.html">reference file</a> WINAPI7 with 
+    Windows 7 declarations. Also updated WINAPI2 in the forum.</li>
+  <li>Bug fixes.</li>
+</ol>
+<h2>QM 2.3.0 (April 29, 2009)</h2>
+<p>Exact version: 2.3.0.13</p>
+<p>&nbsp;</p>
+<p>Summary: Supports Unicode. Does not run on Windows 98/Me. Improved code editor. 
+  Changes in QM user interface. A faster way to find help and tools. Updated WINAPI, 
+  added Vista declarations. New functions. XML and CSV functions. Can open external 
+  text files. Custom icons of QM items. Shell menu triggers. Bookmarks and saved 
+  searches. Printing. QM Pro not needed for exe.</p>
+<p>&nbsp;</p>
+<p>Warning: In this version there are changes that may break some of your existing 
+  macros. Read about possible compatibility problems <a href="IDH_WHATSNEW-218.html#A1">here</a>.</p>
+<p>&nbsp;</p>
+<ol>
+  <li>Supports <a href="../Other/IDP_UNICODE.html">Unicode</a>.</li>
+  <li>Does not run on Windows 98/Me. The last QM version that supports these OS 
+    - QM 2.2.1 - is <a href="http://www.quickmacros.com/history.html" target="_blank">here</a>.</li>
+  <li>Improved code editor. Some related info is <a href="IDH_MENU_EDIT.html">here</a> and <a href="../User/IDP_QMDLL.html">here</a>. You can change colors and fonts 
+    in Options -&gt; Editor.</li>
+  <li>Open Items and Running Items lists. To show, check View Active Items in 
+    Edit or Run menu.</li>
+  <li><a href="IDH_MENU_TOOLBAR.html">Find help, functions, tools</a>. Previously it 
+    was available in the forum. If you have downloaded it, delete &quot;QM quick 
+    help search&quot; folder from the list of macros.</li>
+  <li>Custom <a href="IDH_ICONS.html">icons</a> of QM items.</li>
+  <li> More options in <a href="IDH_ICONS.html">Icons dialog</a>.</li>
+  <li>Imagelist editor.</li>
+  <li> Shell menu triggers. Previously available in the forum. If you have it, 
+    delete 'Shell menu triggers' folder.</li>
+  <li><a href="IDH_INTERFACE.html">Bookmarks and saved searches</a>.</li>
+  <li>Other changes in QM user interface: docked Find dialog, changes in menus 
+    and toolbars, changed some control ids, changed some colors, icons, added 
+    Back and Forward buttons.</li>
+  <li>Updated <a href="../Language/IDP_REF.html">WINAPI</a> reference file. Added 
+    W function versions. Added wininet functions, and removed inet typelib. Removed 
+    some rarely used functions: cryptography, XML, some other. Added WINAPIV reference 
+    file containing Vista declarations.</li>
+  <li>New functions and interfaces: <a href="../User/IDP_ICSV.html" class="type">ICsv</a>, <a href="../User/IDP_IXML.html" class="type">IXml, IXmlNode</a>, <a href="../Functions/IDP_EMPTY.html" class="blue">empty</a>, <span class="UDF">SetEnvVar</span>, <span class="UDF">GetEnvVar</span>, <span class="UDF">SetCurDir</span> (replaces <span class="UDF">ChDir</span>), <span class="UDF">GetCurDir</span> (replaces <span class="UDF">CurDir</span>), <span class="UDF">CB_Add</span>, <span class="UDF">LB_Add</span>, str.<span class="UDF">Swap</span>, <span class="UDF">WaitForThreads</span>, <span class="UDF">GetIpAddress</span>, <span class="UDF">ScreenColors</span>, <span class="UDF">WinA</span> (find window containing acc. object), <span class="UDF">Drag</span>, <span class="UDF">outb</span> (display binary data), <span class="UDF">RunConsole2</span>, <span class="UDF">FileCopy</span>, <span class="UDF">FileMove</span>, <span class="UDF">FileRename</span>, <span class="UDF">FileDelete</span>, <span class="UDF">CloseWindowsOf</span>, <span class="UDF">MsgBoxAsync</span>, <span class="type">__ImageList</span>, <span class="type">__Hicon</span>, <a href="../User/IDP_QMDLL.html#StrCompare" class="dll">StrCompare</a>, <a href="../User/IDP_QMDLL.html#StrCompareN" class="dll">StrCompareN</a>, <a href="../User/IDP_QMDLL.html#MemCompare" class="dll">MemCompare</a>, <a href="../User/IDP_QMDLL.html#GetUserInfo" class="dll">GetUserInfo</a> (user/computer name), <a href="../User/IDP_QMDLL.html#GetFullPath" class="dll">GetFullPath</a> (from relative), <a href="../User/IDP_QMDLL.html#GetQmCodeEditor" class="dll">GetQmCodeEditor</a>, <a href="../User/IDP_QMDLL.html#InsertStatement" class="dll">InsertStatement</a>, 
+    and more.</li>
+  <li>New predefined variables: <a href="../Language/IDP_SPECVAR.html">_unicode</a>.</li>
+  <li>New operators: <a href="../Language/IDP_OPUNARY.html">@</a> (converts string 
+    to Unicode UTF-16).</li>
+  <li>More options in: <a href="../str/IDP_S_UNICODE.html">str.unicode, str.ansi</a>, <a href="../Functions/IDP_FINDRX.html" class="blue">findrx</a> (flag 32), <a href="../str/IDP_S_REPLACERX.html">str.replacerx</a> (flag32), <a href="../Functions/IDP_RGET.html" class="blue">rget, 
+    rset</a>, <a href="../str/IDP_S_ESCAPE.html">str.escape</a>, <a href="../_COM/IDP_INTERFACE.html" class="blue">interface</a> (optional parameters; comments; multiple <a href="../_COM/IDP_COM_CALL.html">function 
+      calls</a> in single statement), <a href="../Language/IDP_TYPE.html" class="blue">type</a> (comments), <a href="../Commands/IDP_OUT.html" class="blue">out</a> (colors, 
+    links), <a href="../Functions/IDP_LEN.html" class="blue">len</a> (supports 
+    BSTR, VARIANT, word*), <a href="../Functions/IDP_NEWITEM.html" class="blue">newitem</a> (temporary), <a href="../Commands/IDP_LEF.html" class="blue">lef/rig/mid/dou</a> (return), <a href="../Commands/IDP_OPT.html" class="blue">opt</a>/<span class="blue">getopt</span> (hungwindow), <a href="../Commands/IDP_ZIP.html" class="blue">zip</a> (no 
+    compression), <a href="../User/IDP_QMDLL.html#GetFileIcon" class="dll">GetFileIcon</a> (cursor, custom size), <span class="UDF">RegWinClass</span>, <span class="UDF">MainWindow</span>, <span class="UDF">MessageLoop</span>, <span class="UDF">OpenSaveDialog</span> (hwndowner), <span class="UDF">OnScreenDisplay</span> (picture).</li>
+  <li>Added QM item type - <a href="IDH_ITEMS.html">file link</a>. Added related 
+    options to <a href="../Functions/IDP_QMITEM.html" class="blue">qmitem</a>, <a href="../str/IDP_S_MACRO.html">str.getmacro</a>, <a href="../Functions/IDP_NEWITEM.html" class="blue">newitem</a> and in other places.</li>
+  <li>Added QM item property - temporary.</li>
+  <li>New triggers: <a href="IDH_TRIG_QM.html">QM events</a> -&gt; File link run, 
+    End thread.</li>
+  <li><a href="../Other/IDP_SEARCHPATHS.html">Special folders</a> more reliable. 
+    Several new special folder names and aliases.</li>
+  <li><a href="IDH_MAKEEXE.html">Exe</a>: Any files can be added to resources 
+    using syntax &quot;:resourceid filepath&quot;. For example, you can use jpg 
+    and gif images in exe dialogs. Previously it worked only with bmp and ico 
+    files and only with some functions. Now it works with most functions that 
+    load a file, including <a href="../str/IDP_S_FILE.html">str.getfile</a>. Also 
+    now can add cursor resources.</li>
+  <li>Toolbars: If you drag and drop a file onto a program icon, you can choose 
+    to open the file in that program.</li>
+  <li>Name completion. Partially type an identifier (function, etc) and press 
+    Ctrl+Space or use menu Edit -&gt; Members.</li>
+  <li>Indented <a href="../Language/IDP_CONSTANT.html">multiline strings</a>.</li>
+  <li>Works better: <a href="../User/IDH_DIALOG_EDITOR.html#a15">Loading files 
+    and HTML into a web browser control</a>. Some optimizations in <span class="blue">win</span>, <span class="blue">child</span>, <span class="blue">acc</span> and <span class="blue">htm</span>. 
+    Ftp and Http functions don't show error descriptions in QM output; added Ftp/Http 
+    member variable lasterror, which will contain error description if a function 
+    failed (returned 0). Toolbars show nondistorted icons of sizes other than 
+    16/32, if icons of that size are available.</li>
+  <li>Printing. Menu File -&gt; More -&gt; Print.</li>
+  <li>You can change backup folder path in Options -&gt; Files.</li>
+  <li>New <a href="IDH_MENUOPTIONS.html">menu option</a>: /multicolumn.</li>
+  <li> Changed behavior of &quot;record window command&quot; hotkey. Now shows 
+    popup menu with several choices. Removed &quot;record mouse command&quot; 
+    hotkey.</li>
+  <li><a href="IDH_MAKEEXE.html">Exe</a>: QM Pro license now is not needed. Currently 
+    there are no other features that would require Pro license.</li>
+  <li>Tested and runs well on Windows 7 beta. Works well with Internet Explorer 
+    8.</li>
+  <li>Can check for new QM version (Options -&gt; General).</li>
+  <li>Bug fixes.</li>
+</ol>
+<p>&nbsp;</p>
+<h4><a name="A1">Compatibility with previous Quick Macros versions</a></h4>
+<ol>
+  <li>Unicode. If QM is running in ANSI mode, you will not have compatibility 
+    problems. It is running in ANSI mode if you upgraded QM from an older version. 
+    It is running in Unicode mode if you did not use QM before, or uninstalled 
+    it before installing new version. You can switch mode in Options. It is recommended 
+    to use Unicode. After switching to Unicode mode, you should convert your old 
+    macros that contain international characters. The Convert button helps you 
+    to do it. <a href="../Other/IDP_UNICODE.html">Read more</a>.</li>
+  <li>This QM version does not run on Windows 98/Me. Exe files created with it 
+    too.</li>
+  <li>QM user interface. Changed some control types, ids, positions, etc. If you 
+    have macros that interact with them, they may stop working. Changed code editor 
+    control type. Read more <a href="../User/IDP_QMDLL.html">here</a>.</li>
+  <li>Added some QM extensions that previously were available in the forum. You 
+    should delete downloaded extensions. While not deleted, QM shows warnings.</li>
+  <li>QM item icons. Everything will work but some icons in menus, toolbars and 
+    dialogs will be different than before. Read <a href="IDH_ICONS.html">more</a>.</li>
+  <li>Updated WINAPI reference file. Removed some rarely used declarations.</li>
+  <li>New functions. If you have functions with same names, rename them. On name 
+    conflicts QM shows warnings or errors in output.</li>
+  <li>Changed behavior of some functions in some specific cases. With <a href="../Functions/IDP_RGET.html" class="blue">rget, 
+    rset</a>, slightly changed behavior when a data type is explicitly specified. 
+    With <a href="../str/IDP_S_ESCAPE.html">str.escape</a>, flag 2 now is ignored. 
+    With <a href="../Commands/IDP_OUT.html" class="blue">out</a>, if text begins 
+    with &lt;&gt;, it is interpreted as containing formatting tags (colors, links, 
+    etc), and found tags are removed.</li>
+  <li><span class="blue">win</span>, <span class="blue">child</span>, <span class="blue">acc</span>, <span class="blue">htm</span>. Changed search order. Now at first retrieves 
+    visible windows/controls, then hidden. <span class="blue">win</span> and <span class="blue">child</span> may find another control if matchindex is specified. Retrieved arrays of handles 
+    also may be ordered differently. This may happen only if some of matching 
+    windows or controls are hidden. Use window/control finder dialogs to fix the 
+    code.</li>
+  <li>Now uses different way to get paths of special folders. Normally this should 
+    not change anything, but if previously some paths were incorrect or could 
+    not be retrieved, now they will be correct.</li>
+</ol>
+<h2>QM 2.2.1 (January 1, 2008)</h2>
+<p>Exact version: 2.2.1.5</p>
+<p>&nbsp;</p>
+<p>Summary: Many bug fixes. New functions, new options in existing functions. 
+  Better reliability of keyboard and clipboard commands.</p>
+<ol>
+  <li>Fixed 2.2.0 version bug: QM does not run on Windows XP without SP. QM-created 
+    exe files too.</li>
+  <li>Fixed 2.2.0 version bug: If using a locale where <b>, </b>is decimal separator, 
+    QM may start to improperly interpret numbers containing <b>.</b> . In exe 
+    too. </li>
+  <li>Fixed 2.2.0 version bug: On some Vista computers, scheduled tasks are not 
+    updated after editing.</li>
+  <li>Fixed 2.2.0 version bug: <span class="UDF">VbsExec</span> and other VBScript 
+    functions don't work.</li>
+  <li>Fixed bug: On computers where hardware Data Execution Prevention is enabled 
+    for all programs, don't work dialogs and other code that uses callback functions.</li>
+  <li>Fixed <a href="../Commands/IDP_MAC.html" class="blue">mac</a> and <span class="UDF">DynamicMenu</span> bugs with synchronous menus: Returns 0 if first line item selected. Does not 
+    wait if a menu is already shown.</li>
+  <li>Fixed bug: dll functions with double parameters give exception if passed 
+    certain expressions.</li>
+  <li>Fixed bugs in <span class="blue">wait</span> K/M in exe: On Windows 98 may 
+    not work. On Vista may not work first time in thread.</li>
+  <li>Fixed bugs in: <span class="blue">def</span> (strings cannot have <b>;</b> characters), <a href="../Commands/IDP_CLO.html" class="blue">clo</a> (some 
+    windows crash), toolbars (sometimes are activated wrong windows), <span class="dll">OnScreenRect</span> (Vista may hang if the rectangle is large, eg 10000x10000), mouse triggers 
+    (incorrect hit test codes), <span class="blue">ifk</span> (on Vista sometimes 
+    does not work), <span class="blue">wait</span> K/M (the same as with <span class="blue">ifk</span>).</li>
+  <li>Improved synchronization of <a href="../Commands/IDP_KEY.html" class="blue">key</a> and clipboard functions. Better reliability, especially in stress conditions 
+    (low memory, busy CPU, etc). </li>
+  <li> New options used with <a href="../Commands/IDP_OPT.html" class="blue">opt</a> (keysync) and <a href="../Functions/IDP_GETOPT.html" class="blue">getopt</a> (slowkeys, slowmouse, keymark, keysync).</li>
+  <li>Better <a href="../Commands/IDP_WAIT.html" class="blue">wait</a> precision 
+    (2 ms).</li>
+  <li><a href="IDH_MAKEEXE.html">Make exe</a>: Can compress.</li>
+  <li><a href="../Language/IDP_DLL.html">Dll functions</a>: 1. Supports optional 
+    parameters. 2. Supports <tt>...</tt> for variable 
+    number of parameters.</li>
+  <li>Added easier way to add <a href="../_COM/IDP_OLE_ARRAY.html">ARRAY</a> elements.</li>
+  <li>New functions: str.stem, <a href="../str/IDP_S_STRUCT.html">str.getstruct, 
+    str.setstruct</a>, <a href="../_COM/IDP_OLE_ARRAY.html">ARRAY.sort, shuffle</a>.</li>
+  <li>New user-defined functions and classes: <span class="UDF">OsdHide</span> (hide on-screen display), <span class="UDF">GetVirtualScreen</span> (rectangle 
+    that contains all monitors), <span class="UDF">ChooseIconDialog</span>, <span class="type">Htm</span>.ClickAsync, <span class="type">str</span>.RandomString, <span class="type">str</span>.Guid, <span class="type">str</span>.ReplaceInvalidFilenameCharacters, <span class="type">str</span>.GetFilenameExt, <span class="type">str</span>.FilenameWithDate, <span class="UDF">GetFilesInFolder</span>, <span class="UDF">GetDrive</span>, <span class="UDF">GetDrives</span>, <span class="UDF">TagWindow</span>, <span class="UDF">FindTaggedWindow</span>, <span class="UDF">IsFunctionRunning</span>, <span class="UDF">MouseButtonX</span>, <span class="UDF">CenterWindow, EnsureWindowInScreen</span><span class="UDF"></span>, <span class="UDF">XyMonitorToNormal</span>, <span class="UDF">XyNormalToMonitor</span>, <span class="UDF">MoveWindowToMonitor</span>, <span class="UDF">FirstWindowInMonitor</span>, <span class="UDF">SetWindowState</span>, <span class="type">HtmlDoc</span> class (HTML parsing), several new functions and classes in System\Functions\Programming. 
+    Some of these functions previously were available in the forum. You may have 
+    to delete duplicates.</li>
+  <li>New <a href="../User/IDP_QMDLL.html">dll functions exported by QM</a>: <span class="dll">GetProcessExename</span>, <span class="dll">RealGetNextWindow</span>, <span class="dll">MonitorFromIndex</span>, <span class="dll">MonitorIndex</span>, <span class="dll">AdjustWindowPos</span>, <span class="dll">RealGetKeyState</span>, <span class="dll">Round</span>, <span class="dll">RandomNumber</span>, <span class="dll">RandomInt</span>.</li>
+  <li>Added predefined variable <a href="../Language/IDP_SPECVAR.html">_monitor</a> that controls where various dialogs are displayed. Some functions modified 
+    to support it.</li>
+  <li>More options in: <a href="../User/IDP_QMDLL.html" class="dll">StartProcess</a> (window state), <span class="UDF">GetWorkArea</span> (flags, monitor), <span class="UDF">OnScreenDisplay</span> (flag 8 - hide when macro ends, flag 16 - raw x y, flag 32 - place by the 
+    mouse, supports _monitor), <span class="UDF">ShowDialog</span> (flag 64 - 
+    raw x y, supports _monitor), <span class="UDF">SetWinStyle</span> (flag 16 
+    - update client), <a href="../Commands/IDP_WAIT_FOR.html" class="blue">wait</a> S (can be used handle, can wait until something changes in the window or rectangle), 
+    toolbars (<a href="IDH_TOOLBARMENU.html">3D buttons</a>), <a href="../Commands/IDP_KEY.html" class="blue">key</a> (can return virtual-key codes), <span class="UDF">IntGetFile</span>/<span class="type">Http</span>.GetUrl/<span class="type">Http</span>.FileGet 
+    (reponseheaders), <span class="type">Http</span>.PostFormData/<span class="type">Http</span>.Post 
+    (inetflags, reponseheaders), <a href="../User/IDP_QMDLL.html" class="dll">RegisterComComponent</a> (can register 64-bit dlls, flag 8), <span class="UDF">DT_GetControls</span>, <span class="UDF">DT_SetControls</span>, <a href="../Functions/IDP_WIN.html" class="blue">win</a> (can get all matching windows), <a href="../Functions/IDP_CHILD.html" class="blue">child</a> (the same), <span class="blue">list</span> (owner window), <span class="blue">inp</span> (owner window), <span class="blue">inpp</span> (owner window).</li>
+  <li>New categories: <span class="lib">sysinfo</span>, <span class="lib">multimedia</span>.</li>
+  <li>Email functions: 1. Support secure connection (SSL). To use secure connection, 
+    check the checkbox in Outlook Express Accounts or QM Email Settings. 2. Account 
+    settings can be specified in code.</li>
+  <li>Changed <a href="../User/IDH_DIALOG_EDITOR.html" class="UDF">ShowDialog</a> position algorithm (differently depends on monitor, styles, hwndowner, etc).</li>
+  <li>Slightly changed behavior of: <a href="../Functions/IDP_WIN.html" class="blue">win</a> (prefers visible windows), <a href="../Functions/IDP_CHILD.html" class="blue">child</a> (does not prefer visible windows if matchindex is nonzero), <a href="../_COM/IDP_COM_FUNC.html" class="blue">_create</a>.</li>
+  <li>Works better: <a href="../Flow/IDP_IFK.html" class="blue">ifk</a> on Vista, <a href="../Functions/IDP_SCAN.html" class="blue">scan</a> with icons.</li>
+  <li><a href="IDH_MENU_TOOLS.html">Log loaded dlls and type libraries</a>.</li>
+  <li>The Find dialog supports AND and OR.</li>
+  <li>Changed double to string conversion (str operator = and other operators). 
+    Now the string never has decimal point at the 
+    end. The string can have more digits (better precision). The exponent sign 
+    is uppercase. The exponent does not include 0 at the beginning. If previously 
+    the string could look like 1.e+016, now it looks like 1E+16.</li>
+  <li>Toolbars: <a href="IDH_TOOLBAROPTIONS.html">/bsiz</a> works with all styles, 
+    and added minwidth.</li>
+  <li>Other bug fixes and optimizations.</li>
+</ol>
+<h2>QM 2.2.0 (June 25, 2007)</h2>
+<p>Exact version 2.2.0.11</p>
+<p>&nbsp;</p>
+<p>Summary: Runs well on Windows Vista. New winapiqm.txt. Macros can run in separate 
+  process. New functions, enhancements and new options in existing functions and 
+  other features.</p>
+<ol>
+  <li>QM now is <b>compatible with Windows Vista</b>, 32-bit and 64-bit versions. 
+    Read about it <a href="../Other/IDP_VISTA.html">here</a>. Also you may want 
+    to read about <a href="IDH_MAKEEXE.html">creating exe files for Vista</a>.</li>
+  <li><b>Updated winapiqm.txt</b> <a href="../Language/IDP_REF.html">reference 
+    file</a> (<span class="lib">WINAPI</span>). Also, in the QM forum you can 
+    find and download another reference file that contains more declarations.</li>
+  <li>Enhancements related to <a href="../Language/IDP_REF.html">reference files</a>: 
+    1. Not error to explicitly declare something that is implicitly declared using 
+    a reference file. 2. Removed &quot;optional&quot; settings from Options (now 
+    everything from WINAPI is always available). 3. Reduced memory usage. 4. Can 
+    include other files. 5. Can log extracted declarations.</li>
+  <li>Enhancements related to <a href="../Language/IDP_TYPE.html">user-defined 
+    types</a>: 1. <a href="../Language/IDP_UNIONS.html">Anonymous types within 
+      types</a>. 2. <a href="../Language/IDP_CLASSES.html">Base type without member 
+        name</a>.</li>
+  <li>Enhancements related to <a href="IDH_TRIG_KEY.html">keyboard</a> and <a href="IDH_TRIG_MOUSE.html">mouse</a> triggers: 1. Can be used <a href="IDH_SETT_TRIGGERS.html"><b>low level hooks</b></a> (optionally), which make triggers more reliable and allow to use system hot 
+    keys. 2. A trigger key can be pressed repeatedly without releasing modifier 
+    keys.</li>
+  <li>New functions: interface <a href="../User/IDP_ISTRINGMAP.html" class="type">IStringMap</a>, <span class="UDF">RunConsole</span>, <a href="../Commands/IDP_LOCK.html" class="blue">lock</a>, <a href="../str/IDP_S_DOSPATH.html">str.dospath</a>, <a href="../str/IDP_S_ADDLINE.html">str.addline</a>, <span class="UDF">ReceiveMail</span>, <a href="../Language/IDP_DIR_EXE.html">#exe 
+    addfile</a>, <a href="../User/IDP_QMDLL.html" class="dll">ExeExtractFile, 
+      ExeGetResourceData</a>, <a href="../User/IDP_QMDLL.html" class="dll"></a>variable <a href="../Language/IDP_SPECVAR.html">_win64</a>.</li>
+  <li>More options in: <span class="type">Dir</span>.GetSize (can get folder size), <a href="../str/IDP_S_FINDREPLACE.html">str.findreplace</a> (replace null 
+    char), <a href="../Functions/IDP_MES.html" class="blue">mes</a> (Vista shield 
+    icon), <a href="../Commands/IDP_OPT.html" class="blue">opt</a> keymark, <a href="../Functions/IDP_RGET.html" class="blue">rset</a> (delete key if empty), <a href="../Commands/IDP_WEB.html" class="blue">web</a>, <a href="../Commands/IDP_WAIT_FOR.html" class="blue">wait</a> (multiple handles), <a href="../Commands/IDP_SHUTDOWN.html" class="blue">shutdown</a> (thread 
+    handle/id), <a href="../str/IDP_S_SEARCHPATH.html">str.expandpath</a> (unexpand), <a href="../User/IDP_QMDLL.html" class="dll">EnumQmThreads</a> (thread name), <span class="UDF">OnScreenDisplay</span> (wrap), <a href="../Functions/IDP_NEWITEM.html" class="blue">newitem</a> (encrypted), <a href="../Commands/IDP_RUN.html" class="blue">run</a> (run 
+    as admin), <a href="../_COM/IDP_COM_FUNC.html">_getactive</a> (ROT moniker), <a href="IDH_EXTOOLBAR.html">toolbar hook</a> (WM_INITDIALOG), <span class="type">Dir</span>.FileName 
+    (DOS format), <span class="UDF">ShutDownProcess</span>, <a href="../User/IDP_QMDLL.html" class="dll">EnumProcessesEx</a>, <a href="../Functions/IDP_WIN.html" class="blue">win</a> (matchindex, exename), <a href="../Functions/IDP_CHILD.html" class="blue">child</a> (matchindex), <a href="../Functions/IDP_ACC.html" class="blue">acc</a> (matchindex).</li>
+  <li>Small changes in: <a href="../Functions/IDP_RGET.html" class="blue">rget</a> (ini files), <a href="../Commands/IDP_WAIT_FOR.html" class="blue">wait</a> x H 
+    (returns -1 on error), <span class="UDF">Speak</span> (changed implementation; 
+    some changes in behavior with flag 2), <a href="../Functions/IDP_WIN.html" class="blue">wintest</a> (class is not required for hidden windows).</li>
+  <li>Several new <a href="../User/IDP_QMDLL.html">dll functions exported by qm.exe</a>.</li>
+  <li>Macro and function properties: <a href="IDH_MAKEEXE.html"><b>&quot;Run in 
+    separate process&quot;, &quot;Run As&quot;</b></a>.</li>
+  <li><a href="IDH_POPUP.html">Popup menus</a>: <b>Expandable file folders</b>, 
+    bitmaps and more.</li>
+  <li><a href="../Other/IDP_SEARCHPATHS.html">Special folders</a>: 1. Can be 
+    used CSIDL constants. 2. Environment variables are expanded recursively.</li>
+  <li><b>Better supports <a href="../User/IDH_DIALOG_EDITOR.html">ActiveX controls</a></b>. 
+    In the <a href="../_COM/IDP_COM_USAGE.html">Type Libraries dialog</a> added 
+    Controls view.</li>
+  <li><a href="IDH_MAKEEXE.html">Make exe</a>: 1. Can be specified custom manifest 
+    file. 2. The macro can be in a folder or not. 3. Adding files to exe (see <a href="../Language/IDP_DIR_EXE.html">#exe addfile</a>, <a href="../User/IDP_QMDLL.html" class="dll">ExeExtractFile, 
+      ExeGetResourceData</a>).</li>
+  <li>For compatibility with Windows Vista and some programs, <span class="blue">key</span> and clipboard commands now use different synchronization methods than in previous 
+    versions. In most cases, these commands will work as well as previously, but 
+    some macros may require some corrections (<span class="blue">wait</span>, <span class="blue">err</span>). Also, after copy/paste commands, the clipboard 
+    contents now is restored immediately.</li>
+  <li>Pasting (<span class="blue">outp</span> and str.setsel) now works in console 
+    windows too.</li>
+  <li>These features are no longer supported in <a href="IDH_MAKEEXE.html">exe</a>: <span class="blue">wait</span> x KF (wait for key-down and eat), <span class="blue">share</span> (shared memory). They can be used only in QM. In exe they would cost too much, 
+    especially on Windows Vista and 64-bit.</li>
+  <li>These features are now supported in exe: <span class="blue">shutdown</span> -1 (exit exe), <span class="UDF">Exit</span> (exit exe). Fixed <span class="blue">shutdown</span> -7 bug.</li>
+  <li>In exe, all text and function names now are encrypted.</li>
+  <li>Now maximal text length is 4 MB for menus, toolbars and TS menus. For other 
+    items it remains 32 KB.</li>
+  <li> A global hotkey to show Threads dialog can be specified in Options.</li>
+  <li>Menu Edit -&gt; Wrap Lines.</li>
+  <li>Options -&gt; Files -&gt; Always Add These Shared Files.</li>
+  <li>Toolbars: 1. Some changes in <a href="IDH_EXTOOLBAR.html">hook functions</a> (WM_INITDIALOG, etc). 2. New <a href="IDH_TOOLBAROPTIONS.html">toolbar options</a> /glass, /font, 1-pixel border. 3. Setting text color does not disable visual 
+    styles. 4. If you use <span class="dll">GetWindow</span> or other Windows 
+    API function to get toolbar owner window, you should change it to <span class="dll">GetToolbarOwner</span>, 
+    because <span class="dll">GetWindow</span> will return incorrect result.</li>
+  <li>File triggers: DOS filenames are no longer returned for Added and Modified 
+    events. You should modify Include/Exclude fields that contain DOS filenames.</li>
+  <li>Other enhancements and bug fixes.</li>
+</ol>
+<h2>QM 2.1.9 beta (September 29, 2006)</h2>
+<p>Exact version 2.1.9.1</p>
+<p>&nbsp;</p>
+<p>Summary: Can create exe files from macros. Several new functions and new options 
+  in existing functions. Different dialog procedure.</p>
+<ol>
+  <li><a href="IDH_MAKEEXE.html"><b>Make exe</b></a>. Can create standalone programs 
+  from macros and functions.</li>
+  <li>New directives: <a href="../Language/IDP_DIR_OUT.html" class="dir">#out, 
+    #warning, #error</a>, <a href="../Language/IDP_DIR_EXE.html" class="dir">#exe</a>. 
+    More options in <a href="../Language/IDP_DIR_OPT.html" class="dir">#opt</a> (nowarnings).</li>
+  <li>New functions: <span class="type">Http</span>.PostFormData.</li>
+  <li>New predefined <a href="../Language/IDP_SPECVAR.html"> variables and constants</a>.</li>
+  <li>More options in: <a href="../User/IDH_DIALOG_EDITOR.html" class="UDF">ShowDialog</a> (icon, menu, hotkeys, resources), <a href="../Language/IDP_DLL.html" class="blue">dll</a> (delay-loading), <a href="../Commands/IDP_OUT.html" class="blue">out</a> (clear), <a href="../Functions/IDP_SCAN.html" class="blue">scan</a> (handle, resource), <span class="UDF">LogFile</span>, <span class="UDF">IntGetFile</span> (callback 
+    function), <span class="type">Http</span>.FileGet (callback function), <span class="type">Http</span>.GetUrl 
+    (callback function), <span class="UDF">Curtain</span> (returns window handle), <span class="blue">dir</span> and <span class="type">Dir</span>.dir (finds 
+    drives).</li>
+  <li>Several new <a href="../User/IDP_QMDLL.html">dll functions exported by qm.exe</a>.</li>
+  <li>In <a href="../User/IDH_DIALOG_EDITOR.html">dialog</a> procedure now it 
+    is not necessary to call <span class="UDF">DT_Init</span> and other DT_x functions.</li>
+  <li><a href="IDH_TRIG_FILE.html">File triggers</a> more reliable. Fixed 2.1.9.0 
+    bug with network folders.</li>
+  <li>Changed <a href="IDH_SETT_TRIGGERS.html">End-macro hotkey</a> behavior.</li>
+  <li>Other enhancements and bug fixes.</li>
+</ol>
+<h2>QM 2.1.8 (June 15, 2006)</h2>
+<p>Exact version 2.1.8.8</p>
+<ol>
+  <li>New trigger type - <a href="IDH_TRIG_QM.html">QM events</a>. Special items 
+    now are included as QM events triggers, and removed from Options.</li>
+  <li>New trigger type - <a href="IDH_TRIG_FILE.html">file</a>. For Windows 2000/XP 
+    and later.</li>
+  <li>New trigger type - <a href="IDH_TRIG_EVENTLOG.html">event log</a>. For Windows 
+    2000/XP and later.</li>
+  <li>New trigger type - <a href="IDH_TRIG_PROCESS.html">process</a>. For Windows 
+    2000/XP and later.</li>
+  <li>New trigger type - <a href="IDH_TRIG_ACC.html">accessible object</a>.</li>
+  <li><a href="IDH_TRIG_EXT.html">User-defined triggers</a> now can be added to 
+    the Properties dialog.</li>
+  <li>Better integration with the Task Scheduler.</li>
+  <li> Added option to <a href="../Other/IDP_QMTL.html">unlock computer</a> 
+    to run the macro in normal conditions.</li>
+  <li>All trigger settings now are included in the <a href="../Other/IDP_TRIGGER_CODING.html">trigger 
+    string</a>.</li>
+  <li>All <a href="IDH_TOOLBAROPTIONS.html">toolbar options</a> now can be set 
+    in Properties. Added new toolbar options to set background picture and transparency.</li>
+  <li>New option for functions: Allow single instance.</li>
+  <li>New functions: <span class="UDF">Speak</span>, <span class="UDF">SpeekStop</span>, 
+    <span class="UDF">OnScreenDisplay</span>, <span class="UDF">RunTextAsFunction2</span>, 
+    <span class="UDF">Curtain</span>, <span class="UDF">SetFileTimes</span>, <span class="UDF">GetClipboardFiles</span>, 
+    <span class="UDF">VbsExec2</span>, <span class="UDF">AutoPassword</span>, 
+    <span class="UDF">RunAs</span>, <span class="type">Acc</span>.ObjectFromEvent, 
+    <span class="type">ExcelSheet</span>.Save, <span class="type">Database</span> 
+    class, several new <a href="../User/IDP_QMDLL.html">dll functions exported 
+    by qm.exe</a>.</li>
+  <li>More options in: <span class="UDF">IntPost</span>, <span class="type">Http</span>.Post, 
+    <span class="UDF">MouseWheel</span>, <span class="type">ExcelSheet</span>.Init, 
+    <span class="UDF">FE_ExcelRow</span>, <span class="UDF">BrowseForFolder</span>, 
+    <span class="UDF">RegWinClass</span>, <span class="UDF"><span class="UDF">ShowDialog</span></span> 
+    (x, y), <span class="UDF">ShutDownProcess</span>, <a href="../str/IDP_S_ENCRYPT.html">str.encrypt, 
+    str.decrypt</a>.</li>
+  <li>Works better: wait for web page (<a href="../Commands/IDP_WEB.html" class="blue">web</a>, 
+    <a href="../Commands/IDP_WAIT_FOR.html" class="blue">wait</a>). Previously, with 
+    some multiframe pages, did not wait for all frames.</li>
+  <li>Works better: <a href="../Flow/IDP_ERR.html">_error</a>. Now it is properly 
+    populated in functions registered by <span class="blue">atend</span>.</li>
+  <li>Works better: calling nondeclared COM functions. This also makes working 
+    with WMI easier.</li>
+  <li>Works better: now dialogs with DS_SETFOREGROUND style are really activated, 
+    regardless of system settings and other conditions.</li>
+  <li>Works better: <a href="../_COM/IDP_COM_EVENTS.html">_setevents</a>.</li>
+  <li>New dialogs: Get file info, Enter password.</li>
+  <li>Dialogs, toolbars, str.setclip and str.setsel now support image files of 
+    bmp, jpg and gif type.</li>
+  <li>In <a href="IDH_MENUICONS.html">menus</a> can be used icon handles.</li>
+  <li>Timer functions (<a href="../Commands/IDP_TIM.html" class="blue">tim</a>) 
+    now run in new thread each time.</li>
+  <li>Redesigned Properties and Options dialogs.</li>
+  <li>The command line parameter E now always causes to exit QM, even if an error 
+    occurs.</li>
+  <li>Now passwords that are passed to functions can be <a href="IDH_SETT_SECURITY.html">encrypted</a>. 
+    All QM functions that accept password now support encrypted passwords.</li>
+  <li>New help topic about <a href="IDH_FUNCTIONTIPS.html">user-defined functions</a>.</li>
+  <li>Other enhancements and bug fixes.</li>
+</ol>
+<h2>QM 2.1.7 (Jun 14, 2005)</h2>
+<ol>
+  <li><b><a href="../Other/IDP_F1.html">Integrated help</a></b>: Tips for beginners, 
+    and function help on F1. Reassigned F1 and F2 hotkeys, and unassigned F3.</li>
+  <li>New functions and classes: <a href="../Functions/IDP_SCAN.html" class="blue"><b>scan</b></a><b> 
+    (find image on screen)</b>, <a href="../Functions/IDP_PERF.html" class="blue">perf</a> 
+    (get time in microseconds), <a href="../Functions/IDP_MATCHW.html" class="blue">matchw</a> 
+    (compare strings using wildcard characters), class <span class="type">Htm</span> 
+    (wraps html element functions; it also includes mouse actions and enhanced 
+    selecting of combo box items), class <span class="type">ExcelSheet</span> (get/set 
+    cell values), functions <span class="UDF">FE_ExcelRow</span> (get cell values), 
+    <span class="UDF">GetAttr</span>, <span class="UDF">SetAttr</span> (file attributes), 
+    and several other.</li>
+  <li>Several qm internal functions now also are <a href="../User/IDP_QMDLL.html">exported 
+    as dll functions</a>.</li>
+  <li>More options in: <a href="../Commands/IDP_WAIT_FOR.html" class="blue">wait</a> 
+    (wait for image on screen), <a href="../Commands/IDP_OPT.html" class="blue">opt</a> 
+    (slowmouse, slowkeys), <a href="../Language/IDP_REF.html" class="blue">ref</a> 
+    (declare identifiers on demand but always see them in the main popup list), 
+    <a href="../Commands/IDP_WEB.html" class="blue">web</a> (get window handle, 
+    use *), <a href="../Flow/IDP_SEL.html" class="blue">sel</a> (use *), <span class="UDF">ShowText</span> 
+    (rich text).</li>
+  <li>Work better: wait for CPU on Windows 20000/XP and later (eliminated first-time 
+    delay and high memory consumption).</li>
+  <li>Toolbars: menu -&gt; <a href="IDH_TOOLBARMENU.html">Quick Icons</a>. 
+    Other performance enhancements. Toolbar option <a href="IDH_TOOLBAROPTIONS.html">/bsiz</a> 
+    (max button size).</li>
+  <li>QM runs in <a href="IDH_MENU_TOOLS.html">safe mode</a> if F8 is pressed 
+    when starting.</li>
+  <li>You can <a href="IDH_SETT_FILES.html">change My QM folder path</a>. It is 
+    where your default macro list file and various other files used in QM are 
+    stored.</li>
+  <li><a href="IDH_TRIG_COMMANDLINE.html">Command line</a>: you can specify some 
+    other character to use instead of &quot;.</li>
+  <li>Wildcard characters: functions and triggers, where * can be used, now also 
+    support ?.</li>
+  <li><a href="../User/IDH_DIALOG_EDITOR.html">Dialogs</a>: now you can use <b>graphical 
+    ActiveX controls</b>, including the web browser control.</li>
+  <li>COM <a href="../_COM/IDP_COM_EVENTS.html">event functions</a>: simpler access 
+    to the event-source object.</li>
+  <li>New help topic about <a href="../_COM/IDP_COM_USAGE.html">using COM components</a>.</li>
+  <li><a href="../Language/IDP_SCOPE.html">Thread variables</a>: no more &quot;invalid 
+    pointer&quot; errors, because the declaration statement now may be skipped 
+    during the run time. If there is a constructor, now it runs at the beginning, 
+    not where the variable is declared.</li>
+  <li>Type libraries: now are supported names containing invalid characters.</li>
+  <li>Various small enhancements and bug fixes.</li>
+</ol>
+<h2>QM 2.1.6 (Mar 17, 2005)</h2>
+<ol>
+  <li><a href="IDH_QUICK.html">Quick Start</a> topic.</li>
+  <li>New commands: <a href="../Flow/IDP_DEB.html" class="blue">deb</a> (set debug 
+    mode), <a href="../Commands/IDP_NET.html" class="blue">net</a> (run macro 
+    on other computer).</li>
+  <li>Easier <a href="IDH_NETWORK.html">network setup</a>.</li>
+  <li>Command line parameter <a href="IDH_TRIG_COMMANDLINE.html">N</a> (wait for 
+    a network file).</li>
+  <li>Improved menu recording. Toolbar menu item Record Menus.</li>
+  <li>Toolbar option <a href="IDH_TOOLBAROPTIONS.html">/lock</a>.</li>
+</ol>
+<h2>QM 2.1.5 (Feb 2, 2005)</h2>
+<ol>
+  <li>New functions: <a href="../Functions/IDP_HTM.html" class="blue">htm</a> 
+    (replaces <span class="UDF">HtmlFind</span>), <a href="../Commands/IDP_WEB.html" class="blue">web</a> 
+    (open web page; replaces <span class="UDF">IeNavigate</span>), more Internet 
+    functions (connect, disconnect, get/set offline mode, download, http post, 
+    functions and classes for sending and retrieving email), <a href="../Commands/IDP_MKDIR.html" class="blue">mkdir</a> 
+    (replaces <span class="UDF">MkDir</span>), <a href="../Functions/IDP_INPP.html" class="blue">inpp</a> 
+    (replaces <span class="UDF">Password</span>), <span class="blue"><a href="../Commands/IDP_ZIP.html" class="blue">zip</a></span> 
+    (compress/extract files), <a href="../Language/IDP_REF.html" class="blue">ref</a> 
+    (add reference file), <a href="../_COM/IDP_OLE_ARRAY.html">ARRAY.remove</a>, 
+    <span class="UDF">ShellDialog</span> (Run, Shut Down and other dialogs), <span class="UDF">Play</span> 
+    (play audio files) and several other user-defined functions.</li>
+  <li>More options in: <a href="../Commands/IDP_WAIT_FOR.html" class="blue">wait</a> 
+    (wait for color, cursor, web page, and more), <a href="../str/IDP_S_ESCAPE.html">str.escape</a> 
+    (urlencode), <a href="../str/IDP_S_ENCRYPT.html">str.encrypt/decrypt</a> (various 
+    algorithms), <a href="../Functions/IDP_FINDRX.html" class="blue">findrx</a> 
+    (get n-th submatch), <a href="../Functions/IDP_ACC.html" class="blue">acc</a> 
+    (wait), <a href="../_COM/IDP_TYPELIB.html" class="blue">typelib</a> (load on 
+    demand), <a href="../Flow/IDP_FOREACH.html" class="blue">foreach</a> (without 
+    VARIANT), <a href="../Functions/IDP_CALL.html" class="blue">call</a> (function 
+    name as string), <a href="../Commands/IDP_SHUTDOWN.html" class="blue">shutdown</a> 
+    (softly end current thread), <a href="../Functions/IDP_QMITEM.html" class="blue">qmitem</a> 
+    (datemod), <a href="../str/IDP_S_SEARCHPATH.html">str.expandpath</a> (env. 
+    var.), Tray functions, <span class="type">Ftp</span>.Cmd (&quot;write&quot; 
+    commands), <span class="UDF">ChDir</span> (autorestore), <a href="IDH_TOOLBARMENU.html">toolbars</a> 
+    (all virtual desktops).</li>
+  <li> Work better: <span class="blue">act</span> (activate next window), <span class="UDF">ArrangeWindows</span> 
+    0 (show desktop), <span class="UDF">ShowText</span> (removed 64 KB limitation), 
+    <span class="blue">rget</span> (supports REG_EXPAND_SZ), new Internet functions.</li>
+  <li>The following commands can also be used as functions (variable=function(...)): 
+    <a href="../Commands/IDP_MIN.html" class="blue">min, max, res</a>, <a href="../Commands/IDP_HID.html" class="blue">hid</a>, <a href="../Commands/IDP_MEN.html" class="blue">men</a>, 
+    <a href="../Commands/IDP_DIS.html" class="blue">dis</a>, <a href="../Commands/IDP_SPE.html" class="blue">spe</a>, 
+    <a href="../Commands/IDP_OPT.html" class="blue">opt</a>.</li>
+  <li>Type-info: declared several useful type libraries - Wsh (Windows Script 
+    Host), Shell32, <a href="../User/IDP_E_SERVICES.html">Services</a>, etc, and 
+    reference file WINAPI containing Windows declarations (type <span class=cod><span class=lib>WINAPI.</span></span> and select from list).</li>
+  <li>Embedding multiline <a href="../Language/IDP_CONSTANT.html">strings</a> 
+    without escaping.</li>
+  <li>Menus, toolbars, TS menus: can be used escape sequences.</li>
+  <li>You can <a href="IDH_SETT_TRIGGERS.html">selectively disable</a> key, 
+    mouse, window and command line triggers.</li>
+  <li> Disabled items don't run from command line triggers (shortcut, scheduler, 
+    etc). Also, special items now also don't run if file is disabled.</li>
+  <li>Menu Edit -&gt; Copy BBCode. Copies colored code for the QM forum.</li>
+  <li><a href="IDH_QML.html">File viewer</a>. Makes importing and undeleting easier 
+    and safer.</li>
+  <li><a href="http://www.quickmacros.com/forum/index.php" target="_blank">Spam filter</a>. Checks 
+    email and deletes spam.</li>
+  <li>QM extensions now are better protected from initialization failures. In 
+    Options, added 'Extensions: always use' checkbox and 'Check extensions' button. 
+    The System folder now is read-only.</li>
+  <li>Items in read-only folders cannot be modified in any way. Previously, read-only 
+    was only text. The 'Properties' dialog now is always accessible (even if macro 
+    is encrypted), but properties cannot be changed if macro is in read-only folder.</li>
+  <li>Now, variables can be used in all fields of dialogs from the floating toolbar. 
+    Instead of using 'Variable' checkbox, enclose variables into parentheses. 
+    This is necessary only for string fields, and must not be used where there 
+    is 'Variable' checkbox.</li>
+  <li>More dialogs, more options in existing dialogs.</li>
+  <li>New <a href="IDH_TRIG_COMMANDLINE.html">command-line</a> parameter MS allows 
+    you to execute functions synchronously.</li>
+  <li>When exporting, you can set allowed file-open methods (open, import, use 
+    as shared file).</li>
+  <li>New setup program.</li>
+  <li>QM now works better on computers with multiple user accounts. QM now is 
+    installed for all user accounts. The default place where QM now saves various 
+    files is the My QM folder in My Documents (previously - QM folder), that is, 
+    separate files for each user. Some files are moved from QM folder to My QM 
+    folder.</li>
+  <li><a href="IDH_MENU_TOOLS.html">My Macros</a> window. View all triggers in 
+    one list.</li>
+  <li>Menu File -&gt; Sort.</li>
+  <li>Windows XP visual styles (themes) applied. <a onClick="doSection(e1)" class="expand">Possible 
+    problems</a> 
+    <div id="e1" class="expand"> In user-defined dialogs 
+      (created in QM Dialog Editor), lines become invisible. To make them visible, 
+      replace them with Static controls with SS_ETCHEDHORZ or SS_ETCHEDVERT style. 
+      To do it quickly, use Find dialog. Check Regexp. In first edit field enter 
+      <span class="red">^( \d+ )Button 0x\d+7 0x\d+( .+ &quot;&quot;\r\n)</span>. In second 
+      edit field enter <span class="red">$1Static 0x54000010 0x20004$2</span> 
+      (for horizontal lines) or <span class="red">$1Static 0x54000011 0x20004$2</span> 
+      (for vertical lines). Replace all found lines in dialog definitions. </div>
+    <p>&nbsp;</p>
+  </li>
+</ol>
+  
+<p> <i>Note:</i> after upgrading to 2.1.5 version, many settings are reset to 
+  defaults, like after installing first time.</p>
+<h2>QM 2.1.4 (Jun 27, 2004)</h2>
+<ol>
+  <li> <a href="IDH_RECORD.html">Recording</a>: improved reliability; can 
+    use variables.</li>
+  <li> More options in <a href="../Commands/IDP_ACT.html" class="blue">act</a>, 
+    <a href="../Commands/IDP_OPT.html" class="blue">opt</a>, <a href="../Functions/IDP_GETOPT.html" class="blue">getopt</a> 
+    and <a href="../Functions/IDP_WIN.html" class="blue">win</a>.</li>
+  <li> Changed behavior of <a href="../Flow/IDP_END.html" class="blue">end</a> 
+    in callback function.</li>
+  <li> Functions from System <a href="IDH_QML.html">shared folder</a> now have 
+    higher priority.</li>
+  <li> Removed all triggers from the System folder.</li>
+  <li> <a href="IDH_TOOLBAROPTIONS.html">Toolbar startup options</a>: better parsing; 
+    can be used functions.</li>
+  <li>Better support for drag and drop in toolbars. You can drop QM items, Internet 
+    links, multiple files and virtual folders/objects.</li>
+  <li> Fixed several bugs.</li>
+</ol>
+<h2>QM 2.1.3 (May 30, 2004)</h2>
+<ol>
+  <li>More dialogs, more options in existing dialogs.</li>
+  <li>Added support for multiple monitors. This includes mouse commands, mouse 
+    triggers and toolbars.</li>
+  <li>More options in <a href="IDH_TRIG_KEY.html">key triggers</a> (next key), 
+    <a href="IDH_TRIG_MOUSE.html">mouse triggers</a> (X buttons, window parts), 
+    <a href="IDH_TRIG_WINDOW.html">window triggers</a> and <a href="IDH_TSM.html">TS 
+    menus</a>. Window trigger coding is changed. Window triggers now are more 
+    reliable.</li>
+  <li>New commands and functions: <a href="../Flow/IDP_FOREACH.html" class="blue">foreach</a>, 
+    <a href="../str/IDP_S_MACROS.html">str.setmacro</a> and several new functions 
+    in System\Functions folder.</li>
+  <li>More features in: <a href="../Flow/IDP_SEL.html" class="blue">sel-case</a>, 
+    <a href="../Commands/IDP_KEY.html" class="blue">key</a>, <a href="../Functions/IDP_NEWITEM.html" class="blue">newitem</a>, 
+    <a href="../Functions/IDP_CHILD.html" class="blue">child</a>, <a href="../Commands/IDP_BUT.html" class="blue">but</a>, 
+    <span class="blue">list</span>, <a href="../Functions/IDP_MES.html" class="blue">mes</a>, 
+    <a href="../Commands/IDP_RUN.html" class="blue">run</a>, <a href="../Functions/IDP_RGET.html" class="blue">rget 
+    rset</a>, <a href="../str/IDP_S_FIX.html">str.fix</a>, <a href="../_COM/IDP_OLE_ARRAY.html">ARRAY.redim</a>, 
+    <span class="UDF">ArrangeWindows</span>, <a href="../User/IDH_DIALOG_EDITOR.html">Dialog 
+    Editor</a> and <a href="IDH_TOOLBAROPTIONS.html">toolbar options</a>.</li>
+  <li>In window triggers and all functions that search for window or other object 
+    by name (<a href="../Functions/IDP_WIN.html" class="blue">win</a>, 
+    <span class="blue">child</span>, <span class="blue">acc</span>, <span class="UDF">HtmlFind</span>), 
+    flag &quot;Exact&quot; is replaced with &quot;Use *&quot;. Behavior is the 
+    same, unless string contains *, or if &quot;Exact&quot; was used together 
+    with &quot;Regexp.&quot;.</li>
+  <li>Regular expressions: $ now matches either newline, or carriage return and 
+    newline.</li>
+  <li>Fixed several bugs.</li>
+</ol>
+
+<h2>QM 2.1.2 (Feb 24, 2004)</h2>
+<p>Main new features: now QM can recognize much more types of user interface objects, 
+  including html elements in web pages (e.g., links), and programmatically interact 
+  with them.</p>
+<ol>
+  <li>Now you can work with accessible objects. Accessible objects are user interface 
+    objects contained in a window: controls, menus, links, list items, etc. New 
+    features include functions <a href="../Functions/IDP_ACC.html" class="blue">acc, 
+    acctest</a> (find/test accessible object), <span class="type">Acc</span> class 
+    (manipulate accessible object), &quot;Find accessible object&quot; and &quot;Accessible 
+    object actions&quot; dialogs.</li>
+  <li>Now you can work with html elements in web page (links, buttons, text input 
+    fields, etc). New features include function <span class="UDF">HtmlFind</span> 
+    (find html element), related functions, &quot;Find html element&quot; and 
+    &quot;Html element actions&quot; dialogs.</li>
+  <li>New classes: <span class="type">Acc</span>, <span class="type">Tray</span> 
+    (add tray icon).</li>
+  <li>More features in: <a href="../_COM/IDP_INTERFACE.html" class="blue">interface</a>, 
+    <a href="../str/IDP_S_CLIP.html">str.getsel, str.setsel</a>, <a href="../Commands/IDP_OPT.html" class="blue">opt</a>, 
+    <a href="../Flow/IDP_ERR.html" class="blue">err</a>, <a href="../Commands/IDP_SPE.html" class="blue">spe</a>, 
+    <a href="../Flow/IDP_SEL.html" class="blue">case</a>, <a href="../Commands/IDP_MAC.html" class="blue">mac</a>, 
+    <a href="../Functions/IDP_NEWITEM.html" class="blue">newitem</a>, 
+    <a href="../User/IDH_DIALOG_EDITOR.html">Dialog Editor</a>, <a href="IDH_TOOLBAR.html">toolbars</a>, 
+    <a href="IDH_TOOLBAROPTIONS.html">toolbar startup options</a>.</li>
+  <li>Now <span class="blue">err</span> and <span class="blue">opt</span> statements 
+    can handle exceptions.</li>
+  <li>Now formatting functions don't produce &quot;(null)&quot; when string variable 
+    isn't initialized.</li>
+  <li>Fixed bugs in: <span class="blue">iif</span> (when used as argument with 
+    some functions), <span class="blue">qmitem</span>, menu/toolbar icons, and 
+    several other.</li>
+</ol>
+
+<h2>QM 2.1.1 (Jan 03, 2004)</h2>
+
+<ol>
+  <li>Changed Help file format.</li>
+  <li> Now you can copy QM text in HTML format.</li>
+  <li>New classes: <span class="type">Dir</span> (find and enumerate files, get 
+    file info).</li>
+  <li>More features in <span class="UDF">Replace</span> dialog (regexp 
+    menu, query saving), <a href="../Commands/IDP_RUN.html" class="blue">run</a> 
+    (get exit code).</li>
+  <li>Fixed bugs in: <a href="../Flow/IDP_END.html" class="blue">end</a> 
+    (in callback), <a href="../str/IDP_S_CLIP.html">str.getclip</a> (unknown format 
+    causes exception), deleting dublicate function (other function becomes unknown), 
+    <span class="UDF">GetFileInfo</span> (wildcards), <span class="UDF">IeNavigate</span> 
+    (hwnd=3).</li>
+</ol>
+
+<h2>QM 2.1.0 (Dec 17, 2003)</h2>
+
+<p>Main new features: COM support, classes, categories, safe arrays, thread variables, 
+  type-info popups (members, globals), regular expressions, trigger scope for 
+  folder, new and extended functions. Below is complete list.</p>
+
+<ol>
+  <li> Now QM supports <a href="../_COM/IDH_COM.html">COM</a>, OLE Automation variable 
+    types and type libraries.</li>
+  <li>Better <a href="IDH_TYPEINFO.html">type info</a>.</li>
+  <li>New functions: <a href="../str/IDP_S_REPLACE.html">str.replace</a>, <a href="../str/IDP_S_FINDREPLACE.html">str.findreplace</a>, 
+    <a href="../str/IDP_S_SEARCHPATH.html">str.expandpath</a>, <a href="../str/IDP_S_ENCRYPT.html">str.encrypt, 
+    str.decrypt</a>, <a href="../Functions/IDP_GETOPT.html" class="blue">getopt</a>, 
+    <a href="../Functions/IDP_NUMLINES.html" class="blue">numlines</a>, 
+    <a href="../Functions/IDP_NEWITEM.html" class="blue">newitem</a>, 
+    <a href="../Language/IDP_DIR_ERR.html" class="dir">#err</a>, <span class="UDF">ChDir</span>, 
+    <span class="UDF">CurDir</span>, <span class="UDF">RunTextAsMacro</span>, 
+    <span class="UDF">RunFileAsMacro</span>, <span class="UDF">IeNavigate</span>, 
+    <span class="UDF">IeWait</span>, functions to execute VBScript and JScript 
+    code, <a href="../Commands/IDP_SHUTDOWN.html" class="blue">shutdown</a>, 
+    <a href="../Functions/IDP_FINDRX.html" class="blue">findrx</a>, 
+    <a href="../str/IDP_S_REPLACERX.html">str.replacerx</a>, <a href="../Language/IDP_DIR_SET.html" class="dir">#set</a>.</li>
+  <li>More options in: <a href="../Language/IDP_DLL.html" class="blue">dll</a>, 
+    <a href="../Language/IDP_DLL.html" class="blue">function</a>, <a href="../Language/IDP_TYPE.html" class="blue">type</a>, 
+    <a href="../Flow/IDP_END.html" class="blue">end</a>, <a href="../Flow/IDP_ATEND.html" class="blue">atend</a>, 
+    <a href="../Commands/IDP_RUN.html" class="blue">run</a>, <a href="../Commands/IDP_COP.html" class="blue"> 
+    cop, ren</a>, <a href="../Commands/IDP_DEL.html" class="blue">del</a>, 
+    <a href="../Commands/IDP_MAC.html" class="blue">mac</a>, <a href="../Commands/IDP_WAIT_FOR.html" class="blue">wait</a>, 
+    <a href="../Functions/IDP_TOK.html" class="blue">tok</a>, <a href="../Language/IDP_DIR_OPT.html" class="dir">#opt</a>, 
+    <a href="../Language/IDP_DIR_IF.html" class="dir">#if</a>, <a href="../Language/IDP_DIR_COMPILE.html" class="dir">#compile</a>, 
+    <a href="../str/IDP_S_TIME.html">str.time</a>, <a href="../str/IDP_S_FROM.html">str.from</a>, <a href="../Functions/IDP_VAL.html" class="blue">val</a> 
+    and <a href="IDH_TSM.html">TS menus</a>.</li>
+  <li>Deleted functions: <span class="blue">float</span> (now use FLOAT type).</li>
+  <li> More strict type checking. Use <a href="../Language/IDP_OPUNARY.html">operator 
+    +</a>.</li>
+  <li>Now user-defined and dll functions can have declared parameters and return 
+    values of any type. Parameters can be structures passed by value.</li>
+  <li> Now menu/toolbar items of &quot;statements&quot; type are executed as functions 
+    therefore can run while macro is running.</li>
+  <li><a href="../_COM/IDP_OLE_ARRAY.html">Safe arrays</a>.</li>
+  <li><a href="../_COM/IDP_COM_EVENTS.html">COM events</a>.</li>
+  <li> A hotkey to end macro can be specified in Options.</li>
+  <li>Folder and file <a href="IDH_FOLDERPROP.html">properties</a>: &quot;Scope&quot; 
+    (scope of triggers), &quot;Application&quot; (private functions, variables, 
+    etc.), &quot;Read-only items&quot;, &quot;Disabled items&quot; and other.</li>
+  <li> New variable scopes: <a href="../Language/IDP_SCOPE.html">thread variables</a> 
+    (function-private and shared).</li>
+  <li> New dialog: Navigate in Internet Explorer (open URL, Back, Stop, etc).</li>
+  <li> Better error handling. See <a href="../Language/IDP_DIR_ERR.html" class="dir">#err</a> 
+    and <a href="../Language/IDP_SCOPE.html">_error</a>.</li>
+  <li> <a href="../RegExp/IDP_PCRE.html">Regular expressions</a>.</li>
+  <li> New topic in Help: COM collections.</li>
+  <li> Removed &quot;Strict type checking&quot; from Options (now always strict). 
+    Use <a href="../Language/IDP_OPUNARY.html">operator +</a>.</li>
+  <li> Changed: now you always must use struct.member syntax to access first member 
+    of structure, unless structure has single member.</li>
+  <li> State data of functions <a href="../Functions/IDP_DIR.html" class="blue">dir</a>, 
+    <a href="../Functions/IDP_FINDT.html" class="blue">findt</a>, <a href="../Functions/IDP_FINDL.html" class="blue">findl</a>, 
+    <a href="../str/IDP_S_GETT.html">str.gett</a> and <a href="../str/IDP_S_GETL.html">str.getl</a> 
+    now has local scope (was thread scope). Each function stores it in separate 
+    local variable: <a href="../Language/IDP_SPECVAR.html">_dir, _findt, _findl, 
+    _gett and _getl</a>.</li>
+  <li><a href="../Language/IDP_CLASSES.html">Classes</a> and <a href="../Language/IDP_CATEGORIES.html">categories</a>.</li>
+  <li> New classes: File, Ftp, Http, Dde.</li>
+  <li>Functions and classes are collected into categories.</li>
+  <li><a href="../Language/IDP_MEMORY.html">Memory-allocation functions</a> <span class="blue">_new</span>, 
+    <span class="blue">_resize</span>, <span class="blue">_delete</span> and <span class="blue">_len</span>.</li>
+  <li> Mouse triggers: &quot;Slow&quot; option.</li>
+  <li> Fixed bugs in <span class="blue">tok</span>, <span class="blue">tim</span>, 
+    <span class="blue">findrx</span>, str.replacerx, str.from, <span class="blue">bee</span>+, 
+    <span class="UDF">CB_SelectString</span> functions, &quot;import&quot;, &quot;insert 
+    encrypted text&quot; features and more.</li>
+  <li> Fixed bugs in long numbers, break, err+.</li>
+  <li> Other bug-fixes and enhancements.</li>
+</ol>
+<p>&nbsp;</p>
+</body>
+
+</html>
