@@ -1,0 +1,446 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<script type="text/javascript" src="../h.js"></script>
+<title>What's new</title>
+<link rel=StyleSheet href="../QM-Help.css">
+<style type="text/css">
+li {
+	margin-top: 3pt;
+	margin-bottom: 3pt;
+}
+</style>
+</head>
+<body>
+<h1>What's new</h1>
+<h2>QM 2.4.12</h2>
+<h4>QM 2.4.12.2 (2021-08-22)</h4>
+<ol>
+<li>Fixed: In QM 2.4.12.1 does not work "Run in separate process" when the file is qmm.</li>
+</ol>
+<h4>QM 2.4.12.1 (2021-08-09)</h4>
+<ol>
+<li>Fixed: Ctrl+Alt+key trigger key cannot be repeated without releasing modifiers if in current keyboard layout the right Alt key is the same as Ctrl+Alt.</li>
+</ol>
+<h4>QM 2.4.12.0 (2021-03-10)</h4>
+<ol>
+<li>Removed process UAC property uiAccess when running as administrator (was Administrator+uiAccess, now just Administrator). Also it is not recommended to use &quot;Run as uiAccess&quot; in Options. Because Windows has too many bugs with it. Because of this change, some (rare) code in macros may behave differently.</li>
+<li>Fixed: mouse commands in some cases set wrong cursor position when moving to another monitor.</li>
+</ol>
+<h2>QM 2.4.11</h2>
+<h4>QM 2.4.11.2 (2021-02-06)</h4>
+<ol>
+<li>Fixed 2.4.11 bug: mouse cursor sometimes flickers in QM windows.</li>
+<li>Fixed bug in menu command &quot;Copy HTML&quot;.</li>
+</ol>
+<h4>QM 2.4.11.1 (2020-12-21)</h4>
+<ol>
+<li>Fixed: <span class="blue">paste</span>+ ignores + and always uses clipboard. Only its old alias <span class="blue">outp</span>+ uses keys as documented.</li>
+<li>Fixed: <span class="blue">key</span> and similar functions slow if the active window is a Windows 10 Store app. Now with these windows is used <span class="blue">opt</span> keysync 2 instead of default 0 or 3.</li>
+<li>Fixed: does not find Windows 8 Store app windows in some cases. In QM and default exe manifests added &lt;disableWindowFiltering&gt;true&lt;/disableWindowFiltering&gt;.</li>
+</ol>
+<h4>QM 2.4.11.0 (2020-07-19)</h4>
+<ol>
+<li>Per-monitor DPI aware on Windows 10. Some high-DPI improvements on older OS too. Below are details.</li>
+<li>Correctly scales text and icons in QM editor window and dialogs.</li>
+<li>Automatically scales text and icons in user toolbars and menus.</li>
+<li>Automatically scales user dialogs and most controls.</li>
+<li>In QM and default exe manifests added &lt;dpiAwareness&gt;PerMonitorV2&lt;/dpiAwareness&gt;.</li>
+<li>New functions: <a href="../Other/IDP_DPI.html" class="dll">DpiGetWindowDPI</a>,  <a href="../Other/IDP_DPI.html" class="dll">DpiGetMonitorDPI</a>, <span class="type">__ImageList</span>.<span class="UDF">DpiScale</span>.</li>
+<li>New <span class="type">__Font</span> functions: <span class="UDF">CreateNew</span>, <span class="UDF">CreateStd</span>, <span class="UDF">CreateFrom</span>. Use in DPI-aware code.</li>
+<li>Fixed: QM &quot;child window from point&quot; functions get wrong control in windows that are in monitors with different DPI than primary monitor.</li>
+<li>Fixed: toolbars cannot be attached to DPI-scaled windows when using multiple monitors with different DPI.</li>
+<li>Fixed: sometimes QM hangs on exit.</li>
+<li>Fixed: no icon if file or shortcut target is in 64-bit System or Program Files folder and not in 32-bit folder.</li>
+<li>Removed safe saving limitation of <a href="../str/IDP_S_FILE.html">str.setfile</a> etc: fails if the file system is not NTFS.</li>
+<li>The code edit control now is Scintilla 4.4.3.</li>
+<li>The floating toolbar now is in QM window.</li>
+<li>Does not support Windows XP. Not tested on Windows Vista.</li>
+</ol>
+<h2>QM 2.4.10.0 (2020-01-23)</h2>
+<ol>
+<li>Fixed bug: fails to get icons from macro resources.</li>
+</ol>
+<h2>QM 2.4.9.0 (2019-08-31)</h2>
+<ol>
+<li>In Options added checkox "Attach toolbars less tightly". It prevents DPI-scaling of QM windows when a toolbar is attached to a DPI-scaled window when using multiple monitors with different DPI.</li>
+</ol>
+<h2>QM 2.4.8</h2>
+<h4>QM 2.4.8.2 (2019-03-28)</h4>
+<ol>
+<li>Fixed bug in function tok: when used arr2 (delimiter tokens), every 32-th its element has incorrect length.</li>
+</ol>
+<h4>QM 2.4.8.1 (2019-03-18)</h4>
+<ol>
+<li>Fixed bug in dialog editor: in multipage dialogs selects controls from hidden pages.</li>
+</ol>
+<h4>QM 2.4.8.0 (2018-12-25)</h4>
+<ol>
+<li>Fixed bug: memory leak in GetFilesInFolder, FE_Dir (used with foreach to enumerate files), Dir.dir, IEnumFiles.</li>
+<li>Function RunConsole2: added flags for UTF-8 and some other text encodings. Also now does not fail when the program is in the 64-bit system folder and not in the 32-bit folder.</li>
+<li>Functions IntGetFile, Http.Get, Http.GetUrl: added parameter sendHeaders.</li>
+</ol>
+<h2>QM 2.4.7 (2017-10-12)</h2>
+<p>&nbsp;</p>
+<h3>Main new features</h3>
+<ol>
+  <li> Works better with new versions of Firefox and Chrome web browsers.</li>
+</ol>
+<h3>All new features</h3>
+<ol>
+<li>Functions that can use Firefox and Chrome web page element attributes and HTML now support 64-bit Firefox/Chrome too. Previously only 32-bit. Note: with Chrome it works only if is installed Firefox of same 32/64 bit as Chrome. These functions are Acc.Find, Acc.FindFF, Acc.WebX functions, FFNode class functions.</li>
+<li>Fixed: With Firefox 56, Acc.Find and similar functions are slow (always &gt; 1 s) when using option &quot;in web page&quot; or &quot;as Firefox node&quot;.</li>
+</ol>
+<h2>QM 2.4.6 (2017-10-05)</h2>
+<p>&nbsp;</p>
+<h3>Main new features</h3>
+<ol>
+  <li>Bug fixes.</li>
+</ol>
+<h3>All new features</h3>
+<ol>
+<li>Fixed:
+    <ul>
+      <li>With new Firefox versions, Acc.Find and similar functions are slow (always &gt; 1 s) when using option &quot;in web page&quot; or &quot;as Firefox node&quot;.</li>
+      <li>With new Chrome versions, cannot enable Chrome web page accessible objects. <a href="../Functions/IDP_ACCESSIBLE.html">More info</a>.</li>
+      <li>With some new Chrome versions, in the &quot;Find accessible object&quot; dialog, the Window field contains text &quot;Invalid window&quot;.</li>
+    </ul>
+  </li>
+</ol>
+<h2>QM 2.4.5 (2017-02-27)</h2>
+<p>&nbsp;</p>
+<h3>Main new features</h3>
+<ol>
+  <li>Bug fixes.</li>
+</ol>
+<h3>All new features</h3>
+<ol>
+<li>Fixed:
+    <ul>
+      <li>str.setsel and str.setclip: if text contains Unicode characters, sets wrong clipboard text, possibly throws exception or corrupts memory.</li>
+      <li><span class="blue">lef</span>/<span class="blue">rig</span>/<span class="blue">mid</span>/<span class="blue">dou</span> flag 4 ignored when window is 0.</li>
+      <li>And more.</li>
+    </ul>
+  </li>
+</ol>
+<h2>QM 2.4.4 (2016-11-06)</h2>
+<p>&nbsp;</p>
+<h3>Main new features</h3>
+<ol>
+  <li>Bug fixes.</li>
+</ol>
+<h3>All new features</h3>
+<ol>
+<li>More options in:
+    
+    <ul>
+      <li>Several System functions have new flags or parameters. Search for text &quot;2.4.4&quot;.</li>
+    </ul>
+  </li>
+  <li>New functions:
+    <ul>
+      <li>HtmlDoc.GetTable2D.</li>
+    </ul>
+  </li>
+  <li>Fixed:
+    <ul>
+      <li>Current Chrome version: often cannot capture accessible objects.</li>
+      <li>Current Windows 10 version: attached toolbars are visible on all virtual desktops.</li>
+      <li><span class="blue">hid</span>- restores maximized or minimized window.</li>
+      <li>Editor: no member info for some variables if the number of variables exceeds about 240.</li>
+      <li>And more.</li>
+    </ul>
+  </li>
+</ol>
+<h2>QM 2.4.3.8 (2016-02-18)</h2>
+<p>&nbsp;</p>
+<h3>Main new features</h3>
+<ol>
+  <li>Works better on Windows 8-10.</li>
+  <li>Shared sub-functions.</li>
+  <li>Several new functions; more features in <span class="blue">scan</span> and some other functions.</li>
+  <li>Bug fixes.</li>
+</ol>
+<h3>All new features</h3>
+<ol>
+<li>New in QM language:
+  <ul>
+    <li>Shared <a href="../Language/IDP_DIR_SUB.html">sub-functions</a>.</li>
+    <li>Private/protected <a href="../Language/IDP_CLASSES.html">class</a> members can be accessed from any QM item named ClassName_X.</li>
+  </ul>
+</li>
+<li>New functions and controls:
+    
+    <ul>
+      <li><span class="UDF">IsWindowCloaked</span>, <a href="../User/IDP_QMDLL.html#WinTest" class="dll">WinTest</a>, <span class="UDF">DT_SetControl</span>, <span class="UDF">DT_GetControl</span>.</li>
+      <li><a href="../User/IDP_ICSV.html" class="type">ICsv</a> member functions <span class="dll">CellInt</span>, <span class="dll">CellHex</span>, <span class="dll">AddRow1</span>, <span class="dll">AddRow3</span>, <span class="dll">AddRowsCSV</span>, <span class="dll">ReplaceRowsCSV</span>.</li>
+      <li><a href="../User/IDP_QMCOMBOBOX.html" class="dll">ShowDropdownList</a>.</li>
+      <li>Controls <a href="../User/IDP_QMCOMBOBOX.html#QM_ComboBox">QM_ComboBox</a> and <a href="../User/IDP_QMCOMBOBOX.html#QM_Edit">QM_Edit</a>.</li>
+    </ul>
+  </li>
+  <li>More options in:
+    <ul>
+      <li><a href="../Functions/IDP_SCAN.html" class="blue">scan</a>: multiple images, search in accessible object, can be faster. Also in related functions - <a href="../Commands/IDP_WAIT_FOR.html">wait C</a> and  <a href="../Functions/IDP_PIXEL.html" class="blue">pixel</a>.</li>
+      <li>Other functions: <span class="UDF">RealGetNextWindow</span>, <span class="UDF">GetMainWindows</span>, <span class="UDF">GetWindowIcon</span>, <span class="UDF">CloseWindowsOf</span>, <span class="UDF">ShowMenu</span>, <span class="type">ICsv</span>.<span class="dll">Find</span>.</li>
+    </ul>
+  </li>
+  <li>Some enhancements in dialogs: Find, Dialog Editor, Toolbar properties.</li>
+  <li>Fixed:
+    <ul>
+      <li>Problems on Windows 10 or/and 8 with: <a href="../Other/IDP_DPI.html">DPI-scaled windows</a>, Win10 app windows, topmost windows, shell menu icons, unlock computer, mouse triggers after sleep, and more.</li>
+      <li>Incorrect behavior on RT error in a callback function. For example, on error in a dialog procedure, <span class="UDF">ShowDialog</span> returns 1 (must end thread immediately).</li>
+      <li>Incorrect wait-for-handle behavior if the handle is 0. For example, <span class=cod><span class=fq>wait</span> <span class=n>5</span> H <span class=n>0</span></span> behaves like <span class=cod><span class=fq>wait</span> <span class=n>5</span></span>.</li>
+      <li>If two member functions have sub-functions with same name, and they call them with a variable (var.sub.Func), may be called wrong sub-function (of other member function).</li>
+      <li>QM in some cases stops working on run-time error/<span class="blue">end</span> in dialog/window procedures.</li>
+      <li>QM stops working on stack overflow exceptions.</li>
+      <li>In 2.3.4.5 fixed: on some XP and Vista computers cannot use some floating toolbar dialogs and function Htm.FromXY.</li>
+      <li>In 2.3.4.6 fixed: QM stops working when trying to open macro/function properties.</li>
+      <li>In 2.3.4.7 fixed: <span class="blue">lef</span>/<span class="blue">rig</span>/<span class="blue">mid</span>/<span class="blue">dou</span> flag 4 ignored. And several other bugs.</li>
+      <li>In 2.3.4.8 fixed: invalid signature of quickmac.exe (installer) of version 2.3.4.7. </li>
+      <li>And more.</li>
+    </ul>
+  </li>
+  <li><span class="red">What can be incompatible with previous versions:</span>
+    <ul>
+      <li>Does not support Windows 2000.</li>
+      <li>Replacing the default QM floating toolbar by setting registry value &quot;GinDi\QM2\User\Tools:Toolbar&quot; now does not work.</li>
+      <li>As always, will need to rename  your functions that have names of the new QM functions.</li>
+    </ul>
+  </li>
+</ol>
+<h2>QM 2.4.2 (2014-11-22)</h2>
+<p>&nbsp;</p>
+<p>Exact version: 2.4.2.2.</p>
+<p>&nbsp;</p>
+<h3>Main new features</h3>
+<ol>
+  <li>Improvements in Dialog Editor, scheduler support and some other features.</li>
+  <li>Supports Java accessible objects.</li>
+  <li>Bug fixes.</li>
+</ol>
+<h3>All new features</h3>
+<ol>
+  <li><a href="../User/IDH_DIALOG_EDITOR.html">Dialog Editor</a>: better supports sub-functions; copy/paste controls; capture alien controls; Tab-select controls; styles for more classes; SysLink controls; and more.</li>
+  <li>Creates and manages <a href="IDH_TRIG_COMMANDLINE.html#a3">scheduled tasks</a> configured for Windows Vista and later.</li>
+  <li>Macros can be set to <a href="IDH_MACRO.html">run simultaneously</a>, like functions.</li>
+  <li>Menu editor. Creates menu definition for dialog menu bar or popup menu.</li>
+  <li><span class="type">Acc</span>/<span class="blue">acc</span> supports <a href="../Functions/IDP_ACCESSIBLE.html">accessible objects in Java applications</a>, including OpenOffice and LibreOffice.</li>
+  <li>New functions:
+  <ul>
+    <li><span class="UDF">DT_MouseWheelRedirect</span>, <span class="UDF">DT_SetMenuIcons</span>.</li>
+    <li><a href="../User/IDP_IXML.html" class="type">IXmlNode</a>: <span class="dll">DeleteChild</span>, <span class="dll">DeleteAttribute</span>.</li>
+    <li><span class="type">MenuPopup</span>.<span class="UDF">Create</span>. Creates from menu definition. <span class="UDF">ShowMenu</span> also supports menu definition.</li>
+    <li><span class="type">Acc</span>.<span class="UDF">JavaAction</span>.</li>
+  </ul>
+  </li>
+  <li>New in:
+  <ul>
+  <li><a href="../User/IDP_QMDLL.html#RtOptions" class="dll">RtOptions</a>: can change some initial run-time options as with <span class="blue">opt</span>.</li>
+  <li><span class="type">ExcelSheet</span>.<span class="UDF">Cell</span> can get comment and hyperlink.</li>
+  <li>QM grid control: added style to drag and drop rows.</li>
+  <li><a href="../Functions/IDP_WIN.html" class="blue">win</a>: new properties: threadId, processHandle.</li>
+  <li><span class="type">str</span>.<span class="UDF">ConvertEncoding</span>: supports charset names and can detect encoding from text.</li>
+  <li>Now functions can have more than 255 local variables.</li>
+  </ul>
+  </li>
+  <li>Bug fixes:
+  <ul>
+    <li>Unicode mode is not set by default on user accounts where QM was not installed.</li>
+    <li>The 'Find help, functions, tools' tool does not index many words.</li>
+    <li>Sometimes error after changing type/class definition.</li>
+    <li><span class="type">Acc</span>.<span class="UDF">GetChildObjects</span>: clears the variable.</li>
+    <li>Chrome auto-enabing accessible objects does not work first time.</li>
+    <li><span class="blue">run</span> returns an invalid value if <b>hwnd</b> used.</li>
+    <li>Fixed in 2.4.2.3. QM-created programs create My QM folder on computers where they run.</li>
+    <li>And more.</li>
+  </ul>
+  </li>
+</ol>
+<!--<p>Some bugs to fix:</p>
+<p>If a macro/function is set to unlock computer and run in separate process, it does not run after unlocking. (maybe fixed, maybe partially, don't remember, see TODO).</p>
+--><p>&nbsp;</p>
+<h2>QM 2.4.1 (2014-06-20)</h2>
+<p>&nbsp;</p>
+<p>Exact version: 2.4.1.8.</p>
+<p>&nbsp;</p>
+<h3>Main new features</h3>
+<ol>
+  <li>Better supports macro resources.</li>
+  <li>Records and displays images.</li>
+  <li>Sub-functions.</li>
+  <li>Several new functions. Improvements in some functions and other features.</li>
+  <li>Bug fixes.</li>
+</ol>
+<h3>All new features</h3>
+<ol>
+  <li>Many QM file/image functions support <a href="../Other/IDP_RESOURCES.html">macro resources</a>.</li>
+  <li>Added dialog 'Resources' to manage macro resources.</li>
+  <li>Displays images in the code editor. <a href="IDH_SETT_GENERAL.html">More info</a>.</li>
+  <li>Can display images in <a href="../Other/IDP_F1.html">output and tips</a> controls.</li>
+  <li>Records screenshots (small images) and displays in the code editor. <a href="IDH_SETT_GENERAL.html">More info</a>.</li>
+  <li>New functions:
+    <ul>
+      <li><a href="../Language/IDP_DIR_SUB.html" class="dir">#sub</a> - sub-functions.</li>
+      <li><a href="../Language/IDP_DIR_REGION.html" class="dir">#region, #endregion</a> - hide/collapse code blocks in the code editor.</li>
+      <li><a href="../User/IDP_QMFILE.html">QM file management functions</a>.</li>
+      <li><span class="UDF">ExeOutputWindow</span>, <a href="../User/IDP_QMDLL.html#RedirectQmOutput" class="dll">RedirectQmOutput</a>.</li>
+      <li><span class="UDF">ExeConsoleWrite</span>, <span class="UDF">ExeConsoleRead</span>, <span class="UDF">ExeConsoleRedirectQmOutput</span>.</li>
+      <li><span class="UDF">ListDialog</span> (replaces <span class="blue">list</span>).</li>
+      <li><span class="UDF">FileGetAttributes</span>, <span class="UDF">FileSetAttributes</span>.</li>
+      <li><span class="type">Dir</span> class: <span class="UDF">TimeModifiedUTC</span>, <span class="UDF">TimeModifiedLocal</span>, <span class="UDF">TimeCreatedUTC</span>, <span class="UDF">TimeCreatedLocal</span>, <span class="UDF">TimeAccessedUTC</span>, <span class="UDF">TimeAccessedLocal</span>.</li>
+      <li><span class="type">Acc</span>.<span class="UDF">NotFound</span>, <span class="type">Htm</span>.<span class="UDF">NotFound</span>.</li>
+      <li><span class="UDF">DT_SetAutoSizeControls</span>.</li>
+      <li><a href="../User/IDP_QMDLL.html#GetQmItemsInFolder" class="dll">GetQmItemsInFolder</a>, <a href="../User/IDP_QMDLL.html#InitWindowsDll" class="dll">InitWindowsDll</a>.</li>
+      <li><a href="../str/IDP_S_SWAP.html">str.swap</a>.</li>
+    </ul>
+  </li>
+  <li>New in:
+    <ul>
+      <li> You can explicitly set address of functions declared with <a href="../Language/IDP_DLL.html" class="blue">dll</a>-, like <span class=cod><span class=o>&amp;</span><span class=fd>Func</span><span class=o>=</span>address</span>, and it can be any function, not just dll.</li>
+      <li><a href="../Language/IDP_DLL.html">dll</a> function pointer parameters: Can declare with &amp; (reference). Can pass variables without operator &amp;.</li>
+      <li>Directives: <span class="dir">#if</span>/<span class="dir">#ifdef</span>/<span class="dir">#ifndef</span> can be nested in other <span class="dir">#if</span>/<span class="dir">#ifdef</span>/<span class="dir">#ifndef</span> or <span class="dir">#else</span> code block. Also now most directives can be tab-indented.</li>
+      <li><span class="blue">mes</span>, <span class="blue">inp</span> and other standard dialogs: <a href="../Other/IDP_SYSLINK.html">links</a>.</li>
+      <li><a href="../Commands/IDP_OPT.html" class="blue">opt</a>: save/restore current <span class="blue">opt</span> and <span class="blue">spe</span> settings.</li>
+      <li><a href="../Functions/IDP_GETOPT.html" class="blue">getopt</a>: itemname.</li>
+      <li><a href="../Flow/IDP_SEL.html" class="blue">sel</a>: flags 4 (regular expressions) and 8 (null string match &quot;&quot;).</li>
+      <li><a href="../Commands/IDP_RUN.html" class="blue">run</a>: flag 0x40000 - support more verbs, including &quot;Properties&quot;.</li>
+      <li>C# and VB.NET functions: supports .NET 4.x.</li>
+      <li><a href="../User/IDP_QMDLL.html#RtOptions" class="dll">RtOptions</a>: net_clr_version (for C# and VB.NET functions).</li>
+      <li><span class="UDF">QmHelp</span> and <a href="../Other/IDP_F1.html">help tags</a>: can use QM help topic name instead of path.</li>
+      <li><span class="UDF">ArrangeWindows</span>: action 8 - Flip 3D.</li>
+      <li><span class="UDF">SelectTab</span>: can use tab name instead of index.</li>
+      <li>Trigger <a href="IDH_TRIG_QM.html">QM show</a>: added option 'Run synchronously'. Can be used to show a password dialog.</li>
+    </ul>
+  </li>
+  <li>New in QM window:
+  <ul>
+  <li>Menu <a href="IDH_MENU_FILE.html">File</a> -&gt; Open/Close Item -&gt; Open in primary/secondary/both editors.</li>
+  <li>Menu File -&gt; Item+ -&gt; Copy name/path.</li>
+  <li>Menu File -&gt; File+ -&gt; Find item in files.</li>
+  <li>Menu <a href="IDH_MENU_EDIT.html">Edit</a> -&gt; Lines -&gt; Hide selected. Inserts <a href="../Language/IDP_DIR_REGION.html" class="dir">#region</a> directive.</li>
+  <li>Menu Edit -&gt; View -&gt; Indentation. Shows indentation guides.</li>
+  <li>Menu Edit -&gt; View -&gt; Multiple selections. You can make multiple selections with Ctrl.</li>
+  <li>Menu <a href="IDH_MENU_TOOLS.html">Run</a> -&gt; Compile Options -&gt; Show unused variables.</li>
+  <li>Find: Replacing macro names and triggers.</li>
+  <li>Find: Better highlighting.</li>
+  </ul>
+  </li>
+  <li>New in Dialog Editor:
+    <ul>
+      <li>Visible grid.</li>
+      <li>Right-drag to resize dialog.</li>
+      <li>Alt+drag to move/resize precisely.</li>
+    </ul>
+  </li>
+  <li>Can create <a href="IDH_MAKEEXE.html">console exe</a>.</li>
+  <li>Bug fixes:
+    <ul>
+      <li>QM 2.4.0 bug: does not get Windows Forms (.NET) control name. Affected functions: <span class="blue">child</span>, <span class="blue">acc</span>, <span class="type">Acc</span>.<span class="UDF">Find</span>, <span class="dll">RecGetWindowName</span>.</li>
+      <li>QM 2.4.0 bug: records incorrect <span class="blue">mou</span> data when selected Variable.</li>
+      <li>QM 2.4.0 bug: <span class="blue">newitem</span> always creates new folder if folder specified without path.</li>
+      <li>QM 2.4.0 bug: scan &quot;file.bmp&quot; shows some text in QM output.</li>
+      <li>Sometimes on Windows shutdown/restart/logoff does not save some settings and does not call global variable destructors.</li>
+      <li>Exe exits on cancelled Windows shutdown/restart/logoff.</li>
+      <li>Some ERRC_ constants may be incorrect after reopening QM file.</li>
+      <li>The 'end-macro' hotkey does not work while executing <span class="blue">key</span>.</li>
+      <li><span class="blue">run</span> fails if used ITEMIDLIST string with more string arguments.</li>
+      <li><span class="UDF">ArrangeWindows</span> 0 not always works.</li>
+      <li>POP3 email functions: error when with flag 0x100 (progress dialog).</li>
+      <li><span class="blue">zip</span>-: files extracted from some zip files are read-only.</li>
+      <li>And more.</li>
+    </ul>
+  </li>
+  <li><span class="red">What can be incompatible with previous versions:</span>
+    <ul>
+      <li>If you have functions  with same names as the new functions, will need to rename or delete  them.</li>
+    </ul>
+  </li>
+</ol>
+<p>Changes since QM 2.4.1.0, shortly:</p>
+<ul>
+  <li>2.4.1.1. FileGetAttributes, FileSetAttributes, InitWindowsDll, _qmfile.GetLoadedFiles, str.swap, #region/#endregion, dll and &amp;, directives, links in mes etc, opt save/restore, getopt itemname, run flag 0x40000, .NET 4.x, RtOptions net_clr_version, ArrangeWindows action 8, new QM menu items and Dialog Editor features, several bugs.</li>
+  <li>2.4.1.2. Fixed QM 2.4.1.1 bug in Dialog Editor.</li>
+  <li>2.4.1.3. sel regex/null flags. Fixed QM 2.4.1.1 bug in 'Find help, functions, tools', str.stem and str.wrap.</li>
+  <li>2.4.1.4. #sub. Fixed QM 2.4.1.1 bug: F1 does not work for some functions. Fixed more bugs.</li>
+  <li>2.4.1.5. Console exe, console functions. Fixed bugs: .NET control name, zip- readonly. And more.</li>
+  <li>2.4.1.6. Menu File -&gt; File+ -&gt; Find item in files. Trigger 'QM show' option 'synchronous'. Bug fixes.</li>
+  <li>2.4.1.7. Fixed: does not record images in 'Screen' mode.</li>
+  <li>2.4.1.8. Updated QM icon. Fixed some small bugs.</li>
+</ul>
+<p>&nbsp;</p>
+
+<h2>QM 2.4.0   (2014-02-05)</h2>
+<p>&nbsp;</p>
+<p>Exact version: 2.4.0.3.</p>
+<p>&nbsp;</p>
+<h3>Main new features</h3>
+<ol>
+  <li>New QM file format.</li>
+  <li>Some changes in user interface.</li>
+  <li>New options in some functions.</li>
+  <li>Bug fixes.</li>
+</ol>
+<h3>All new features</h3>
+<ol>
+  <li><a href="IDH_QML.html">New QM file format, and related changes</a>.</li>
+  <li>Changes in user interface:
+    <ul>
+  <li>Moving multiple QM items: Right-drag to check. Drag all checked.</li>
+  <li>In the list of QM items added special folders &quot;Deleted&quot; (deleted items) and &quot;Temp&quot; (temporary items). Can drag to delete/undelete, or to make temporary or not.</li>
+  <li>The &quot;Open items&quot; list now is auto-ordered. Removed toolbar buttons &quot;Previous&quot; and &quot;Next&quot;, use the &quot;Open items&quot; list instead.</li>
+  <li>Bookmarks replaced with <a href="IDH_MENU_TOOLBAR.html">Tags</a>.</li>
+  <li>The Find dialog: auto-highlight and more.</li>
+  <li>Toolbar positions now are saved in current QM file, not in registry. See also: <a href="IDH_SETT_GENERAL.html">Options -&gt; Layout of toolbars</a>.</li>
+  <li>And more small changes. Search for &quot;2.4.0&quot; in this Help file.</li>
+    </ul>
+  </li>
+  <li>New functions:
+  <ul>
+    <li><a href="../User/IDP_QMDLL.html#FileExists" class="dll">FileExists</a> (replaces <span class="blue">dir</span>).</li>
+    <li><span class="type">Dir</span> class: several new member functions.</li>
+    <li><span class="type">str</span> class: <span class="UDF">SqlBlob</span>.</li>
+  </ul>
+  </li>
+  <li>New in:
+    <ul>
+      <li><a href="../str/IDP_S_FILE.html">str.setfile</a>, <a href="../User/IDP_IXML.html">IXml.ToFile</a>, <a href="../User/IDP_ICSV.html">ICsv.ToFile</a>: safe saving and backup.</li>
+      <li><a href="../Functions/IDP_SCAN.html" class="blue">scan</a>: use image from macro resources.</li>
+      <li><a href="../Commands/IDP_WAIT_FOR.html" class="blue">wait</a>: Added HMA to wait for all handles. Uses alertable waiting.</li>
+      <li>New options and changes in <a href="../Functions/IDP_NEWITEM.html" class="blue">newitem</a>, <span class="type">Sqlite</span>.<span class="UDF">Open</span>, <span class="UDF">FE_Dir</span>, <span class="UDF">GetFilesInFolder</span>, QM grid control styles.</li>
+    </ul>
+  </li>
+  <li>Removed features:
+    <ul>
+  <li>Bookmarks+searches pane. Bookmarks replaced with Tags. Saved searches now are only in the Find dialog.</li>
+  <li><a href="IDH_TRIG_COMMANDLINE.html">Command line</a>: M with L.</li>
+  <li>Toolbar settings: /ini.</li>
+  <li>Options -&gt; Security -&gt; Lock file.</li>
+  <li>Options -&gt; Files -&gt; Always add these shared files.</li>
+  <li>Menu File -&gt; Item -&gt; Sort.</li>
+    </ul>
+  </li>
+  <li>Bug fixes:
+    <ul>
+      <li>Menu File -&gt; File... -&gt; File Properties does not work.</li>
+      <li>Some triggers don't work if there are 10 or more user sessions. Window, autotext, accessible object and shell menu triggers.</li>
+      <li>Sometimes QM crashes in debug mode.</li>
+      <li>Auto-enabling accessible objects in new Chrome versions.</li>
+      <li>Make exe: in some cases incorrectly writes resources, then exe may crash.</li>
+      <li>And more.</li>
+    </ul>
+  </li>
+  <li><span class="red">What can be incompatible with previous versions:</span>
+    <ul>
+      <li>May need to manage  <a href="IDH_QML.html">QM files</a> differently. See also: <a href="IDH_NETWORK.html">network setup</a>, <a href="IDH_SETT_FILES.html">backup</a>.</li>
+      <li>If you have functions  with same names as the new functions, will need to rename or delete  them.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr>
+<h4>See also:</h4>
+<p><a href="IDH_WHATSNEW-218.html">What's new in versions 2.1.0 - 2.3.6</a></p>
+<p>&nbsp;</p>
+</body>
+</html>
