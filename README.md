@@ -324,5 +324,222 @@ class Class {
 
 ---
 
-> _End of comparison.  
-> For further details on Quick Macros syntax, see the [official documentation]([https://www.quickmacros.com/help/](https://xhzkp.github.io/qmHelp/QM_Help/IDH_QUICK.html) 
+# Quick Macros Quick Start Guide
+
+This is a concise but comprehensive quick start tutorial for **Quick Macros (QM)**. It introduces the core concepts, operations, and most important commands, designed for beginners and as a handy reference for experienced users.
+
+---
+
+## Table of Contents
+
+- [What is a Macro](#what-is-a-macro)
+- [How Quick Macros Works](#how-quick-macros-works)
+- [Quick Macros Main Window](#quick-macros-main-window)
+- [Creating Macros, Menus, or Toolbars](#creating-macros-menus-or-toolbars)
+- [Adding Macro Commands](#adding-macro-commands)
+- [Recording Operations](#recording-operations)
+- [Menus and Toolbar Buttons](#menus-and-toolbar-buttons)
+- [How to Launch Macros](#how-to-launch-macros)
+- [Macro Running Status](#macro-running-status)
+- [How to End a Running Macro](#how-to-end-a-running-macro)
+- [Using Variables and Strings](#using-variables-and-strings)
+- [Loops and Conditionals](#loops-and-conditionals)
+- [Top 20 Most Used Commands](#top-20-most-used-commands)
+
+---
+
+## What is a Macro
+
+A macro is a list of commands that are executed in sequence when the macro runs. These commands can perform the same actions as you can do manually: type text, click menus, run files, and more.  
+You can assign a **trigger** (such as a hotkey) to a macro, add it to a toolbar, or launch it by other means. Instead of repeating the same steps manually, you can run the macro with a single click or keystroke.
+
+---
+
+## How Quick Macros Works
+
+In the **Quick Macros window**, you can create macros and other items (functions, toolbars, menus, etc.). Each task you want to automate should have its own macro. Macros can be assigned triggers, e.g., hotkeys, mouse actions, window events.
+
+While Quick Macros is running, it monitors for these triggers. When a trigger event occurs, Quick Macros executes the assigned macro. QM also manages your custom toolbars and menus.
+
+---
+
+## Quick Macros Main Window
+
+- **Top**: Menu and toolbars.
+- **Left**: List of QM items (macros, functions, menus, toolbars, etc.).
+- **Middle**: Code editor. Here you edit the commands of the selected item.
+- **Bottom**: Output area (shows errors and messages), Find, Tips, Status bar.
+
+---
+
+## Creating Macros, Menus, or Toolbars
+
+- To create a new macro, click the **New Macro** button on the toolbar and type a name in the field that appears.
+- To create other item types (function, toolbar, etc.), use the popup menu beside the New Macro button.
+
+---
+
+## Adding Macro Commands
+
+- Macros are stored as plain text, usually with one command per line.
+- You can add commands using dialogs from the code toolbar, but not all commands have dialog boxes—some must be typed manually.
+- You can search for commands and dialogs using the **Find help, functions, tools** field above the code editor.
+- The easiest way to add keyboard and mouse commands is to **record** them.
+
+---
+
+## Recording Operations
+
+- You can record keyboard and mouse actions to create a macro, or just part of it.
+- To start recording, click the **Record** button on the toolbar or press `Ctrl+Shift+Alt+R`.
+- After finishing, click **Insert** in the QM Recording dialog.
+- Recorded macros usually require review and editing, e.g., adding delays or changing window names.
+- When recording, prefer using keyboard shortcuts over mouse actions for more robust macros.
+
+---
+
+## Menus and Toolbar Buttons
+
+Menu text and toolbars are essentially lists of commands, each line creating a menu item or toolbar button. Each line uses the format: `Label : Command`
+
+**Example:**
+```qm
+Macro18 : mac "Macro18"
+Notepad : run "$system$\notepad.exe"
+-
+Email : key "my@ema.il" * text.ico
+Login : key "abcd"; key T; key "1234"; key Y * text.ico
+```
+- To quickly add a macro, drag it from the item list to the menu/toolbar text.
+- To add a file, use the **Run File** dialog or drag it from Explorer.
+- Use `-` or `|` to add a separator.
+- Use the **Icons** dialog to add icons to menu items or buttons.
+
+---
+
+## How to Launch Macros
+
+You can launch macros in several ways:
+- Run button on the QM toolbar
+- Hotkey, mouse, window, or other trigger (set in Properties)
+- Place macro in a custom menu or toolbar and launch from there
+- Schedule to run at a certain time
+- Create a desktop shortcut (set in Properties)
+- Launch from another macro using the `mac` command
+- Use autotext (text replacement triggers)
+
+Menus, toolbars, and functions can be launched in the same ways.
+
+---
+
+## Macro Running Status
+
+When a macro is running, the QM tray icon turns red.  
+When other QM items (functions, menus, etc.) are running, the tray icon does not change.  
+You can see all running items in the **Running items** pane in the QM window or in the **Threads** dialog in the QM tray menu.
+
+---
+
+## How to End a Running Macro
+
+- When a macro is running, press the **Pause** key (can be changed in Options).
+- If input is blocked (due to `BlockInput`), first press `Ctrl+Alt+Delete`.
+- For functions or macros with 'Run simultaneously' option, use the **Running items** pane or Threads dialog to end them.
+- You can also add custom code in your macro to allow it to be stopped, e.g.:
+    ```qm
+    rep
+        ifk(F12) ret ;; end if F12 is pressed
+        ...
+    ```
+
+---
+
+## Using Variables and Strings
+
+You can use variables almost everywhere in QM code.  
+- Use `int` for integer values, `double` for floating-point, `str` for text.
+
+**Example (without variables):**
+```qm
+lef 100 200 "Notepad"
+```
+
+**Example (with variables):**
+```qm
+str s="Notepad" ;; declare str variable s, assign "Notepad"
+int x y         ;; declare int variables x and y
+x=100
+y=x*2
+lef x y s
+```
+
+To share a variable between macros, declare it with `+`:
+```qm
+int+ global_var
+```
+
+**Strings** must be enclosed in double quotes. Use `''` to represent a quote and `[]` for a newline.
+```qm
+out "This is[]a multiline string[]with ''double quotes''."
+```
+
+You can also declare multiline strings:
+```qm
+str s=
+ This is
+ a multiline string
+ with "double quotes".
+out s
+```
+
+---
+
+## Loops and Conditionals
+
+**Loop (repeat commands):**
+```qm
+rep 10
+    lef 100 200
+    key Y
+```
+
+**Conditional execution:**
+```qm
+if i<5
+    out "variable i < 5"
+    i+1
+else
+    out "variable i >= 5"
+```
+
+---
+
+## Top 20 Most Used Commands
+
+Here are the 20 most important QM commands, with descriptions and examples:
+
+| Command      | Purpose & Example |
+|--------------|------------------|
+| **lef, rig** | Mouse click<br> `lef 100 200 ;; left click at 100x200`<br>`lef 90 40 "Notepad"` |
+| **key**      | Keyboard actions<br> `key "Australia"`<br>`key F12`<br>`key Cv ;; Ctrl+V` |
+| **paste**    | Paste text<br> `paste "New Zealand"`<br>`paste s` |
+| **out**      | Output to QM window<br> `out "I am here"`<br>`out i` |
+| **mes**      | Show message box<br> `mes "Important information"`<br>`if(mes("Continue?" "" "YN")='N') ret` |
+| **run**      | Run file, open document or URL<br> `run "C:\WINDOWS\system32\notepad.exe"`<br>`run "http://www.quickmacros.com"` |
+| **act**      | Activate window<br> `act "Notepad"` |
+| **win**      | Find window and get handle<br> `int hwnd=win("Internet Explorer" "IEFrame")`<br>`act hwnd` |
+| **wait**     | Wait/delay<br> `wait 5 ;; wait 5 seconds`<br>`wait 30 "Internet Explorer"` |
+| **mac**      | Launch another macro<br> `mac "Macro9"` |
+| **err**      | Continue if error occurs<br> `wait 2 "Window"`<br>`err` |
+| **ret**      | Exit current macro/function<br> `if(i=0) ret` |
+| **goto**     | Jump to label<br> `if(i>=10) goto g1`<br>`g1: out "This line is always executed"` |
+| **if, else** | Conditional execution<br> `if i<5 ... else ...` |
+| **rep, break** | Loop and break<br> `rep 10 ... break` |
+| **int, str** | Declare variables<br> `str s="Notepad"`<br>`int x y`<br>`int+ g_var` |
+
+---
+
+**For more details, see:**
+- [Quick Macros Official Documentation](https://www.quickmacros.com/help/)
+- [Forum Tutorials and Videos](http://www.quickmacros.com/forum/viewtopic.php?f=7&t=7009)
+- [Programming Reference](https://www.quickmacros.com/help/Reference/IDH_PROGRAMMING.html)
