@@ -216,6 +216,9 @@ Here are the 20 most important QM commands, with descriptions and examples:
 
 QM macro text is a sequence of statements. Usually, a statement is a single line of code that performs an operation or declares an identifier.
 
+> Note: Use tabs for indentation at the beginning of each line of code.  
+> Spaces are strictly prohibited.
+
 **Examples:**
 
 ```qm
