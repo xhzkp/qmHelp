@@ -280,17 +280,21 @@ if a<10
 else ret
 ```
 
-> **Note:** Use tabs for indentation at the beginning of each line of code.  
-> In QM, using spaces for indentation is not allowed — only tabs are permitted.
+> **Note:** In QM, indentation is used to express logical structure instead of curly braces `{}`.  
+> Indentation **must** be done using tabs — using spaces is strictly prohibited.
 
-**Example:**
+The following code is **incorrect**:
 
 ```qm
 int a = 10
-if(a > 5)
-	mes "a is greater than 5"
+if (a > 5)
+{
+    mes "a is greater than 5"
+}
 else
-	mes "a is less than or equal to 5"
+{
+    mes "a is less than or equal to 5"
+}
 ```
 ---
 
