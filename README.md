@@ -538,8 +538,326 @@ Here are the 20 most important QM commands, with descriptions and examples:
 | **int, str** | Declare variables<br> `str s="Notepad"`<br>`int x y`<br>`int+ g_var` |
 
 ---
+# Programming in QM
 
-**For more details, see:**
-- [Quick Macros Official Documentation](https://www.quickmacros.com/help/)
-- [Forum Tutorials and Videos](http://www.quickmacros.com/forum/viewtopic.php?f=7&t=7009)
-- [Programming Reference](https://www.quickmacros.com/help/Reference/IDH_PROGRAMMING.html)
+## Table of Contents
+
+- [Predefined commands and functions](#predefined-commands-and-functions)
+- [Constants](#constants)
+- [Variables](#variables)
+- [Operators](#operators)
+- [Functions](#functions)
+- [If-else](#if-else)
+- [Go to](#go-to)
+- [Repeat](#repeat)
+- [String manipulation](#string-manipulation)
+- [Errors](#errors)
+- [Threads](#threads)
+
+---
+
+As described in the [syntax](IDP_SYNTAX.html) topic, QM macro code is a sequence of various statements: macro commands, functions, calculations, [declarations](../Language/IDP_DECLARATION.html), flow-control, and everything needed for programming.  
+A single line can contain one statement or several statements separated by semicolons.  
+For comments, use a space at the beginning of a line or two semicolons after statements. Tabs at the beginning of a line are used for flow-control statements (`if`, `rep`, etc).
+
+**Example:**
+
+```qm
+ if a is less than 10, left-click, else exit
+if(a<10)
+    lef 5 a "Some Window"; wait 1
+    a + 1 ;;increment a
+else ret
+```
+
+---
+
+## Predefined commands and functions
+
+Quick Macros has about 200 built-in [keywords](IDH_REFERENCE.html), including macro commands, functions, member functions, flow control statements, declaration statements, intrinsic types, compiler directives, and operators.  
+You can also use [DLL functions](../Language/IDP_DLL.html), [COM functions](../_COM/IDH_COM.html), and [user-defined functions](../QM_Help/IDH_FUNCTION.html).
+
+QM provides several [features](../QM_Help/IDH_TYPEINFO.html) to simplify programming. You can press **F1** for help on functions and identifiers. Basic syntax or definitions are shown in the QM status bar. To browse and insert available identifiers, use member lists. Some commands can be entered via dialogs or recorded.
+
+---
+
+## Constants
+
+[Constants](../Language/IDP_CONSTANT.html) are simple numeric or string values, such as `45` (integer), `0x1A` (hex integer), `10.57` (float), or `"text"` (string).  
+String constants are enclosed in double quotes. To insert a double quote inside a string, use two single quotes (`''`).  
+For new line, use `[]`.  
+Constants can be assigned to variables, used as arguments, and in expressions with operators.  
+You can also define [named constants](../Language/IDP_DEF.html).
+
+---
+
+## Variables
+
+[Variables](../Language/IDH_VARIABLES.html) temporarily store data (numeric, text, etc) at runtime. Data can be changed during various operations.  
+Variables can be assigned, used as arguments, and in expressions with operators.
+
+Before using a variable, you must [declare](../Language/IDP_VARIABLES.html) it (except [predefined variables](../Language/IDP_SPECVAR.html)). Declaration includes type and [name](../Other/IDP_IDENTIFIERS.html).  
+Common types:  
+- `int` (integer values)
+- `str` (strings)
+- `double` (floating-point)
+
+**Example:**
+
+```qm
+int i
+str S3
+double+ g_var
+i=5
+S3="text"
+g_var=15.477
+```
+
+You can use [pointers](../Language/IDH_POINTERS.html) and [arrays](../_COM/IDP_OLE_ARRAY.html):
+
+```qm
+ARRAY(str) a.create(10)
+a[0]="abc"
+```
+
+You can [define new types](../Language/IDP_TYPE.html). User-defined types usually have several member variables.  
+For example, type `POINT` has members `x` and `y`:
+
+```qm
+POINT p
+p.y=10
+```
+
+---
+
+## Operators
+
+[Operators](../Language/IDH_OPERATORS.html) are special symbols for assignment, arithmetic, comparison, or other operations.
+
+**Examples:**
+
+```qm
+i = 5            ;; assign 5 to i
+i + 2            ;; add 2 to i
+a = b + 10       ;; a = b + 10
+ave = i + j / 2  ;; ave = i + (j / 2)
+f = i - (10 * j) + func(a b) * -10 ;; complex expression
+str s = "notepad" ;; declare s, assign "notepad"
+s + ".exe"       ;; append ".exe"
+if(i<10 and s="notepad.exe") i = j/10 ;; logical and comparison
+i = Func2(j s (i + 5) f) ;; call function with arguments
+lef a-10 100     ;; left click at (a-10, 100)
+```
+
+Operators have 3 priority classes:  
+1. Arithmetic/bitwise  
+2. Comparison (`=`, `!`, `<`, etc)  
+3. Logical (`and`, `or`)  
+
+Operators in the same class are evaluated left to right. Use parentheses to change order.
+
+See also:  
+- [unary operators](../Language/IDP_OPUNARY.html) (`-` etc)
+- [member access operator](../Language/IDP_TYPEUSAGE.html) `.`
+- [array element access operator](../_COM/IDP_OLE_ARRAY.html) `[]`
+
+---
+
+## Functions
+
+See also: [functions](../Language/IDH_FUNCTIONS.html), [user-defined functions](../QM_Help/IDH_FUNCTION.html), [sub-functions](../Language/IDP_DIR_SUB.html), [function tips](../QM_Help/IDH_FUNCTIONTIPS.html).
+
+A function is a named code unit that can receive (via arguments) and return values.  
+Besides predefined functions, you can create your own.  
+Reuse code by placing it in a function and calling it from any macro.
+
+**Examples:**
+
+```qm
+Func a "text" 100        ;; call Func with three arguments
+a = Func2(10)            ;; call Func2, assign return to a
+Func3(a Func4(b c))      ;; nested function calls
+d = e + Func5(b c) / 10  ;; use function in expression
+```
+
+Some variable types have member functions, called as: variable name, dot, function name.
+
+```qm
+str s s2="notepad"
+s.from(s2 ".exe")
+if(s.end(".exe")) out "s ends with ''.exe''"
+```
+
+To create a new [user-defined function](../QM_Help/IDH_FUNCTION.html), select **New Function** from File/New.  
+To define return type and parameters, use the [`function`](../Language/IDP_FUNCTION.html) statement at the top.  
+To return a value, use the [`ret`](../Flow/IDP_RET.html) statement.
+
+By default, a function can be called from code or launched as a macro.  
+To make it callable only from code, start with a line containing space and `/`:
+
+```qm
+ /
+function'int str'a str&b [int'c]
+statements
+ret 1
+```
+
+- This function returns `int`.  
+- It has three parameters: `a`, `b` (by reference), `c` (optional).  
+- If not returned explicitly, the return value is 0.
+
+---
+
+## If-else
+
+Use `if` to execute or skip statements depending on a condition.
+
+**Example:**
+
+```qm
+if a>0
+    out "a is greater than zero"
+    a-1
+else if a=0
+    out "a is equal to zero"
+else
+    out "a is less than zero"
+```
+
+Statements can also be in a single line:
+
+```qm
+if(a>0) out "a is greater than zero"; a-1
+else if(a=0) out "a is equal to zero"
+else out "a is less than zero"
+```
+
+For comparing a variable to multiple constant values, use [`sel`](../Flow/IDP_SEL.html).
+
+---
+
+## Go to
+
+The [`goto`](../Flow/IDP_GOTO.html) statement jumps to another place in the code.
+
+**Example:**
+
+```qm
+goto g1
+statements
+ g1
+statements
+```
+
+Statements after `goto` are skipped; execution resumes after the label (`g1`, with a space before the label).
+
+---
+
+## Repeat
+
+The [`rep`](../Flow/IDP_REP.html) statement repeats the following tab-indented statements.  
+You can specify the number of repetitions. To exit early, use `break`.  
+Statements can also be in the same line.
+
+**Examples:**
+
+```qm
+rep(100) i-1
+```
+
+This executes `i-1` 100 times.
+
+```qm
+i=0
+rep
+    if(i>=100) break
+    out i
+    i+1
+```
+
+Equivalent using `for`:
+
+```qm
+for i 0 100
+    out i
+```
+
+---
+
+## String manipulation
+
+QM provides many functions for processing [strings](../str/IDH_STRINGS.html). Use `str` variables to store and manipulate text.
+
+**Example:**
+
+```qm
+str s = "Cat" ;; now s is "Cat"
+```
+
+### Global string functions
+
+- `val(s)` – numeric value of string s (0 if s doesn't start with digits)
+- `find(s "substring")` – index of "substring" in s (or -1 if not found)
+- `if(IsCharLower(s[0])) s[0]=CharUpper(+s[0])` – uppercase first character if lowercase
+
+### str member functions
+
+Called with the variable name and dot:
+
+```qm
+s.from("word1" ", " "word2")   ;; s = "word1, word2"
+s.ucase                        ;; s = "WORD1, WORD2"
+str ss.get(s 7 5)              ;; ss = substring of s, starting at 7, length 5
+```
+
+You can use `+` and `-` to append and prepend:
+
+```qm
+s + ".txt"       ;; append ".txt"
+s - "C:\Doc\"    ;; prepend "C:\Doc\"
+```
+
+### String comparison
+
+- `=` : equal, case sensitive
+- `~` : equal, case insensitive
+- `!` : not equal, case sensitive
+
+To compare part of a string, use member functions like `beg`, `mid`, etc.
+
+```qm
+if(s~"Monday") ...          ;; s is "Monday" (case insensitive)
+if(s.endi(".exe")) ...      ;; s ends with ".exe" (case insensitive)
+```
+
+---
+
+## Errors
+
+When you launch a macro, QM [compiles](../QM_Help/IDH_DEBUG.html) it, checking for syntax [errors](../Other/IDP_ERRORS.html).  
+On error, QM highlights the error and shows the description. A macro with errors will not run.
+
+At runtime, a macro command may fail, causing a runtime error and macro termination.  
+The [`err`](../Flow/IDP_ERR.html) statement allows continuation after a run-time error in the preceding command.
+
+**Examples:**
+
+```qm
+clo "Notepad"; err
+
+5 "Notepad"
+err
+    run "$system$\notepad.exe"
+```
+
+In the first example, `err` allows continuation if an error occurs. In the second, on error, the `run "$system$\notepad.exe"` statement is executed.
+
+---
+
+## Threads
+
+[A thread](../Other/IDP_THREADS.html) is like a subprogram in a running program. In QM, it is a running macro or function, including all functions it calls.  
+Multiple [function](../QM_Help/IDH_FUNCTION.html) threads can run simultaneously, including several instances of the same function.  
+Multiple [macro](../QM_Help/IDH_MACRO.html) threads can run simultaneously if the macro has the 'Run simultaneously' option enabled.
+
+---
