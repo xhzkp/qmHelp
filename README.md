@@ -780,9 +780,9 @@ delegate int DelegateType(int x, int y); static DelegateType functionAddress; //
 #### QM
 ```
 if condition
-    code
+	code
 else
-    code2
+	code2
 ```
 #### C++/C#
 ```c++
@@ -802,7 +802,7 @@ if(condition) {
 #### QM
 ```
 for i 0 5
-    code
+	code
 ```
 #### C++/C#
 ```c++
@@ -816,7 +816,7 @@ for(i=0; i<5; i++) {
 #### QM
 ```
 rep 5
-    code
+	code
 ```
 #### C++/C#
 ```c++
@@ -830,8 +830,8 @@ for(int i=0; i<5; i++) {
 #### QM
 ```
 rep
-    if(condition=0) break
-    ...
+	if(condition=0) break
+	...
 ```
 #### C++/C#
 ```c++
@@ -845,8 +845,8 @@ while(condition) {
 #### QM
 ```
 rep
-    ...
-    if(condition=0) break
+	...
+	if(condition=0) break
 ```
 #### C++/C#
 ```c++
@@ -862,12 +862,12 @@ do {
 #### QM
 ```
 sel i
-    case 1
-        code
-    case 2
-        code
-    case else
-        code
+	case 1
+		code
+	case 2
+		code
+	case else
+		code
 ```
 #### C++/C#
 ```c++
