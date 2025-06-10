@@ -212,6 +212,118 @@ Here are the 20 most important QM commands, with descriptions and examples:
 | **int, str** | Declare variables<br> `str s="Notepad"`<br>`int x y`<br>`int+ g_var` |
 
 ---
+# Syntax of QM Macro Code
+
+QM macro text is a sequence of statements. Usually, a statement is a single line of code that performs an operation or declares an identifier.
+
+**Examples:**
+
+```qm
+lef+ 10 200 "Notepad"
+lef
+int a b c
+a = b * 100
+Func b 1
+a = Func(b 1)
+```
+
+---
+
+The first and second statements are *macro commands*. They consist of the following *parts*:
+- `lef` is the command *keyword*.
+- `+` is an *option*.
+- `10`, `200`, and `"Notepad"` are *arguments* (the actual values for the command/function parameters).
+
+The third statement declares [variables](../Language/IDH_VARIABLES.html) `a`, `b`, and `c`.
+
+The fourth statement assigns the [expression](../Other/IDP_EXPRESSION.html) `b*100` to variable `a`.
+
+In the fifth statement, the [function](../Language/IDH_FUNCTIONS.html) `Func` is called with arguments `b` and `1`.
+
+In the last statement, function `Func` is called, and its return value is assigned to `a`.
+
+Numbers such as 10, 200, 100, and 1 are *numeric* [constants](../Language/IDP_CONSTANT.html).
+
+`"Notepad"` is a *string constant*.
+
+`=` and `*` are [operators](../Language/IDH_OPERATORS.html).
+
+---
+
+Parts of statements must be separated by spaces (except command/option). In statements with operators (example 4), spaces may be omitted. Arguments can also be separated by commas (`,`).
+
+When using enclosed arguments, the `(` must be immediately after the function name and option character (if any).
+
+---
+
+### Special Characters at the Beginning of a Line
+
+- Space, `;`, `/`, or `\` disables the line (useful for comments).
+- To disable/enable lines easily, right-click the selection bar.
+- Comments can also follow a statement using `;;`.
+
+**Example:**
+```qm
+; this is a comment
+int a ;; declare integer a
+```
+
+---
+
+Tabs or commas are used with flow-control statements (`if`, `rep`, etc).
+
+**Example:**
+```qm
+; if a is less than 10, left-click, else exit
+if a<10
+    lef
+    a + 1 ;; increment a
+else ret
+```
+
+---
+
+A single line can contain several statements separated by semicolons (`;`). A semicolon is optional after a statement that begins with a command/function name and has enclosed arguments (or empty parentheses). It's also optional after `else`, `err`, and `case`.
+
+**Examples:**
+```qm
+lef+ 10 100 Notepad; lef; int a; a = b + 100; Func(a b); b = Func(a b)
+rep() if(b>a) b=Func(a b); else break
+```
+
+---
+
+## Syntax Descriptions Used in This Help File
+
+Gray symbols in syntax descriptions have the following meanings:
+
+| Syntax Example                 | Meaning                                    |
+|-------------------------------|--------------------------------------------|
+| `[a]`                         | *a* is optional                            |
+| `a\|b`                        | *a* or *b*                                 |
+| `a&b`                         | *a* and/or *b*                             |
+| `(a b)\|(c d)`                | *a b* or *c d*                             |
+| `(space)a`                    | *a* must be preceded by space or semicolon |
+| `(tab)a`                      | *a* must be preceded by tab or comma       |
+| `...`                         | More parameters or statements              |
+| `int a`                       | *a* is a function returning int            |
+
+**Syntax description example:**
+```
+lef[+|-] [x y] [window] [client]
+```
+- All parameters in `[]` are optional.
+- `[+|-]` means you can use option character `+` or `-` optionally.
+- The `lef` keyword at the beginning means `lef` is a command, not a function.
+
+**Real code examples based on the above syntax:**
+```qm
+lef 10 200 "Notepad"
+lef
+lef+ 10 200
+```
+---
+
 # Programming in QM
 
 ## Table of Contents
