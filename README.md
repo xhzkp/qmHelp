@@ -216,9 +216,6 @@ Here are the 20 most important QM commands, with descriptions and examples:
 
 QM macro text is a sequence of statements. Usually, a statement is a single line of code that performs an operation or declares an identifier.
 
-> Note: Use tabs for indentation at the beginning of each line of code.  
-> Spaces are strictly prohibited.
-
 **Examples:**
 
 ```qm
@@ -229,7 +226,6 @@ a = b * 100
 Func b 1
 a = Func(b 1)
 ```
-
 ---
 
 The first and second statements are *macro commands*. They consist of the following *parts*:
@@ -279,11 +275,26 @@ Tabs or commas are used with flow-control statements (`if`, `rep`, etc).
 ```qm
 ; if a is less than 10, left-click, else exit
 if a<10
-    lef
-    a + 1 ;; increment a
+	lef
+	a + 1 ;; increment a
 else ret
 ```
 
+> **Note:** Use tabs for indentation at the beginning of each line of code.  
+> Do not use spaces.
+
+**Example:**
+
+```qm
+int a = 10
+if(a > 5)
+{
+	mes "a is greater than 5"
+}
+else
+{
+	mes "a is less than or equal to 5"
+}
 ---
 
 A single line can contain several statements separated by semicolons (`;`). A semicolon is optional after a statement that begins with a command/function name and has enclosed arguments (or empty parentheses). It's also optional after `else`, `err`, and `case`.
