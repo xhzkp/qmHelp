@@ -281,7 +281,7 @@ else ret
 ```
 
 > **Note:** Use tabs for indentation at the beginning of each line of code.  
-> Do not use spaces.
+> In QM, using spaces for indentation is not allowed — only tabs are permitted.
 
 **Example:**
 
