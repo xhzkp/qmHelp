@@ -291,6 +291,7 @@ if(a > 5)
 	mes "a is greater than 5"
 else
 	mes "a is less than or equal to 5"
+```
 ---
 
 A single line can contain several statements separated by semicolons (`;`). A semicolon is optional after a statement that begins with a command/function name and has enclosed arguments (or empty parentheses). It's also optional after `else`, `err`, and `case`.
