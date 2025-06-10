@@ -325,4 +325,4 @@ class Class {
 ---
 
 > _End of comparison.  
-> For further details on Quick Macros syntax, see the [official documentation]([https://www.quickmacros.com/help/](https://xhzkp.github.io/qmHelp/QM_Help/IDH_QUICK.html)) or community forums._
+> For further details on Quick Macros syntax, see the [official documentation]([https://www.quickmacros.com/help/](https://xhzkp.github.io/qmHelp/QM_Help/IDH_QUICK.html) 
