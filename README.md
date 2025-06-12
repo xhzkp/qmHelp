@@ -121,9 +121,9 @@ You can see all running items in the **Running items** pane in the QM window or 
 - For functions or macros with 'Run simultaneously' option, use the **Running items** pane or Threads dialog to end them.
 - You can also add custom code in your macro to allow it to be stopped, e.g.:
     ```qm
-    rep
-        ifk(F12) ret ;; end if F12 is pressed
-        ...
+	rep
+		ifk(F12) ret ;; end if F12 is pressed
+		...
     ```
 
 ---
@@ -173,17 +173,17 @@ out s
 **Loop (repeat commands):**
 ```qm
 rep 10
-    lef 100 200
-    key Y
+	lef 100 200
+	key Y
 ```
 
 **Conditional execution:**
 ```qm
 if i<5
-    out "variable i < 5"
-    i+1
+	out "variable i < 5"
+	i+1
 else
-    out "variable i >= 5"
+	out "variable i >= 5"
 ```
 
 ---
@@ -366,8 +366,8 @@ For comments, use a space at the beginning of a line or two semicolons after sta
 ```qm
  if a is less than 10, left-click, else exit
 if(a<10)
-    lef 5 a "Some Window"; wait 1
-    a + 1 ;;increment a
+	lef 5 a "Some Window"; wait 1
+	a + 1 ;;increment a
 else ret
 ```
 
@@ -517,12 +517,12 @@ Use `if` to execute or skip statements depending on a condition.
 
 ```qm
 if a>0
-    out "a is greater than zero"
-    a-1
+	out "a is greater than zero"
+	a-1
 else if a=0
-    out "a is equal to zero"
+	out "a is equal to zero"
 else
-    out "a is less than zero"
+	out "a is less than zero"
 ```
 
 Statements can also be in a single line:
@@ -571,16 +571,16 @@ This executes `i-1` 100 times.
 ```qm
 i=0
 rep
-    if(i>=100) break
-    out i
-    i+1
+	if(i>=100) break
+	out i
+	i+1
 ```
 
 Equivalent using `for`:
 
 ```qm
 for i 0 100
-    out i
+	out i
 ```
 
 ---
@@ -648,7 +648,7 @@ clo "Notepad"; err
 
 5 "Notepad"
 err
-    run "$system$\notepad.exe"
+	run "$system$\notepad.exe"
 ```
 
 In the first example, `err` allows continuation if an error occurs. In the second, on error, the `run "$system$\notepad.exe"` statement is executed.
